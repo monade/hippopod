@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "script": "node scripts/start.js",
+    "script-example": "node scripts/start.js 000000 ffffff regular card  ",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
