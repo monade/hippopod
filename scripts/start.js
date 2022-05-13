@@ -1,5 +1,5 @@
 const { checkCorrectArguments, printArguments } = require("./arguments");
-const { build } = require("./build");
+const { build, distributeBuild } = require("./build");
 const { buildJson } = require("./json");
 
 (async function () {
@@ -22,8 +22,7 @@ const { buildJson } = require("./json");
 
     await build();
 
-    // TODO:
-    // await serveBuildOnS3();
+    await distributeBuild();
 
     console.log("\n");
     console.log("Succesfully created your Hippopod site 🦛", "\n");
