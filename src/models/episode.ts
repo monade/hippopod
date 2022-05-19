@@ -3,7 +3,7 @@ export interface Episode {
   description?: string;
   url?: string;
   type?: string;
-  sizeBytes?: string;
+  sizeBytes?: number;
   imageUrl?: string;
   durationSeconds?: number;
   publicationDate?: Date;

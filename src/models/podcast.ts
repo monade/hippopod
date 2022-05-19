@@ -9,7 +9,7 @@ export interface Podcast {
   categories: string[];
   imageUrl?: string;
   episodes: Episode[];
-  lastUpdate?: Date;
+  lastBuildDate?: Date;
   language?: string;
   copyright?: string;
 }
