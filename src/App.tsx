@@ -1,8 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { getPodcast } from './utils/podcastUtils';
 
 function App() {
+  const feed1Url = 'https://podcast.radiopopolare.it/podcast/popolare-gr.xml';
+  getPodcast(feed1Url).then(podcast => console.log(podcast));
+  
   return (
     <div className="App">
       <header className="App-header">
