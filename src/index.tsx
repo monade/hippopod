@@ -1,19 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import './index.scss'
-import Cubango from "./templates/cubango/cubango";
+import './index.scss';
+import config from './data/arguments.json'
+
+import Bani from './templates/bani/bani'
+import Cubango from './templates/cubango/cubango';
+import Zambezi from './templates/zambezi/zambezi'
+
+// document
+//     .querySelector(':root')
+//     .style
+//     .
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-    <Cubango />
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+switch(config.theme) {
+    case 'bani':
+        root.render(
+            <Bani />
+        );
+        break;
+    case 'cubango':
+        root.render(
+            <Cubango />
+        );
+        break;
+    case 'zambezi':
+        root.render(
+            <Zambezi />
+        )
+        break;
+}
+
 reportWebVitals();
 
 // const feeds = [

@@ -1,4 +1,4 @@
-module.exports.moods = [
+module.exports.themes = [
   "bani",
   "cubango",
   "zambezi"
