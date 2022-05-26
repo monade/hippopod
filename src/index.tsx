@@ -8,11 +8,6 @@ import Bani from './templates/bani/bani'
 import Cubango from './templates/cubango/cubango';
 import Zambezi from './templates/zambezi/zambezi'
 
-// document
-//     .querySelector(':root')
-//     .style
-//     .
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
