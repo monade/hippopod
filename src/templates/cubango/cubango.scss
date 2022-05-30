@@ -4,7 +4,8 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
-:root {
-  --primary: #F07A91;
-  --text: #1A2028;
+.container {
+  display: grid;
+  grid-template-rows: 35vh;
+  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 18rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
 }

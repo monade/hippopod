@@ -7,13 +7,15 @@ import Header from "./components/header/header";
 const Cubango = () => {
     const [podcast, setPodcast] = useState<Podcast>()
 
-    useEffect(() => {
-        getPodcast('https://feeds.megaphone.fm/muschioselvaggio')
-            .then(res => setPodcast(res));
-    })
+    // useEffect(() => {
+    //     getPodcast('https://feeds.megaphone.fm/muschioselvaggio')
+    //         .then(res => setPodcast(res));
+    // })
 
     return (
-        <Header title={podcast?.title} />
+        <main className={'container'}>
+            <Header title={podcast?.title} />
+        </main>
     )
 }
 

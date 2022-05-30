@@ -8,6 +8,9 @@ import Bani from './templates/bani/bani'
 import Cubango from './templates/cubango/cubango';
 import Zambezi from './templates/zambezi/zambezi'
 
+const rootStyle = (document.querySelector(':root') as any).style;
+rootStyle.setProperty('--primary', `${config.color}`);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

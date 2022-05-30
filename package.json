@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "generate": "node scripts/start.js 1a1a1a zambezi light",
+    "generate": "node scripts/start.js 2EB170 zambezi light",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
