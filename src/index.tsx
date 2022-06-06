@@ -1,37 +1,26 @@
-<<<<<<< Updated upstream
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import './index.scss';
-import config from './data/arguments.json'
-
-import Bani from './templates/bani/bani'
-import Cubango from './templates/cubango/cubango';
-import Zambezi from './templates/zambezi/zambezi'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import config from "./data/arguments.json";
+import "./index.scss";
+import Bani from "./templates/bani/bani";
+import Cubango from "./templates/cubango/cubango";
+import Zambezi from "./templates/zambezi/zambezi";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
-switch(config.theme) {
-    case 'bani':
-        root.render(
-            <Bani />
-        );
-        break;
-    case 'cubango':
-        root.render(
-            <Cubango />
-        );
-        break;
-    case 'zambezi':
-        root.render(
-            <Zambezi />
-        )
-        break;
+switch (config.theme) {
+  case "bani":
+    root.render(<Bani />);
+    break;
+  case "cubango":
+    root.render(<Cubango />);
+    break;
+  case "zambezi":
+    root.render(<Zambezi />);
+    break;
 }
-
-reportWebVitals();
 
 // const feeds = [
 //   'https://podcast.radiopopolare.it/podcast/popolare-gr.xml',
@@ -43,20 +32,3 @@ reportWebVitals();
 // for (const feed of feeds) {
 //   getPodcast(feed).then(podcast => console.log(podcast));
 // }
-=======
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Player } from "./components";
-import "./index.css";
-import { getPodcast } from "./utils/podcastUtils";
-
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <Player />
-  </React.StrictMode>
-);
-
-const feed1Url = "https://podcast.radiopopolare.it/podcast/popolare-gr.xml";
-getPodcast(feed1Url).then(podcast => console.log(podcast));
->>>>>>> Stashed changes
