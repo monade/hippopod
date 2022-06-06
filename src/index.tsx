@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
@@ -42,3 +43,20 @@ reportWebVitals();
 // for (const feed of feeds) {
 //   getPodcast(feed).then(podcast => console.log(podcast));
 // }
+=======
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Player } from "./components";
+import "./index.css";
+import { getPodcast } from "./utils/podcastUtils";
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <Player />
+  </React.StrictMode>
+);
+
+const feed1Url = "https://podcast.radiopopolare.it/podcast/popolare-gr.xml";
+getPodcast(feed1Url).then(podcast => console.log(podcast));
+>>>>>>> Stashed changes
