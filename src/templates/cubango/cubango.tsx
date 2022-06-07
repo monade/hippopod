@@ -3,6 +3,7 @@ import { Podcast } from "../../models/podcast";
 import { getPodcast } from "../../utils/podcastUtils";
 import "./cubango.scss";
 import Header from "./components/header/header";
+import { Player } from "../../components";
 
 const Cubango = () => {
   const [podcast, setPodcast] = useState<Podcast>();
@@ -13,7 +14,12 @@ const Cubango = () => {
     );
   });
 
-  return <Header title={podcast?.title} />;
+  return (
+    <>
+      <Header title={podcast?.title} />
+      <Player />
+    </>
+  );
 };
 
 export default Cubango;

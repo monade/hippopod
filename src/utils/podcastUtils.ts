@@ -84,7 +84,7 @@ const findMultipleByPath = (tag: any, path: string): string[] => {
 
       return [];
     } else {
-      const childAsArray = Array.isArray(child) ? child : [ child ];
+      // const childAsArray = Array.isArray(child) ? child : [ child ];
 
       if (Array.isArray(child)) {
         return child.reduce((accumulator, current) =>

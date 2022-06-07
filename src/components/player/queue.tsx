@@ -1,23 +1,17 @@
 import React from "react";
+import playerContext from "./playerContext";
+import QueueEpisode from "./queueEpisode";
 
 export default function Queue() {
-  // state and variables
+  const ctx = React.useContext(playerContext);
 
-  // effects
-
-  // actions
-
-  const selectTrack = () => {};
-
-  const nextTrack = () => {};
-
-  const removeATrack = () => {};
-
-  const removeAllTracks = () => {};
-
-  const addATrack = () => {};
-
-  // formatted strings
-
-  return <div>queue</div>;
+  return (
+    <div>
+      <h1>QUEUE:</h1>
+      <button>togli tutti i brani</button>
+      {ctx?.queue.map((episode, index) => {
+        return <QueueEpisode key={episode.url} episode={episode} />;
+      })}
+    </div>
+  );
 }

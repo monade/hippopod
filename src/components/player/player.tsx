@@ -1,65 +1,37 @@
 import React, { useEffect } from "react";
+import AudioPlayer from "./audioPlayer";
+import Commands from "./commands";
+import PlayerContext from "./playerContext";
+import Queue from "./queue";
+import { PlayerContextInterface } from "./types";
 
 export default function Player() {
-  // state and variables
-
-  const audioElement = new Audio();
-
-  // effects
-
+  const audioPlayer = AudioPlayer;
+  const playerContextInterface: PlayerContextInterface = {
+    queue: [
+      {
+        url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
+        date: new Date(),
+        size: 40000000,
+        title: "#36 Tra guerra santa e Jihad - Le crociate",
+        // duration: new Date(70000),
+        playTime: new Date(5000),
+      },
+    ],
+    audioPlayer,
+    getCurrentEpisode: () => {
+      return playerContextInterface.queue[0];
+    },
+  };
   useEffect(() => {
-    audioElement.src = "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3";
+    console.log("setting episode.");
+    audioPlayer.setEpisode(playerContextInterface.getCurrentEpisode());
   }, []);
 
-  // actions
-
-  const play = () => {
-    audioElement.play();
-  };
-
-  const pause = () => {
-    audioElement.pause();
-  };
-
-  const goBack10Seconds = () => {};
-
-  const goForward10Seconds = () => {};
-
-  const mute = () => {};
-
-  const unMute = () => {};
-
-  const setVolume = () => {};
-
-  const openQueue = () => {};
-
-  const changeEpisodeSpeed = () => {};
-
-  const downloadEpisode = () => {};
-
-  // formatted strings
-
-  const getEpisodeTitle = () => {};
-
-  const getEpisodeDate = () => {};
-
-  const getEpisodeDuration = () => {};
-
-  const getEpisodeSize = () => {};
-
-  const getEpisodeCurrentTime = () => {};
-
-  const getEpisodeCurrentTimePercentage = () => {};
-
-  const getEpisodeCurrentTImeReverse = () => {};
-
   return (
-    <div>
-      <button onClick={play}>play</button>
-      <button onClick={pause}>stop</button>
-      <button onClick={pause}>stop</button>
-      <button onClick={pause}>stop</button>
-      <button onClick={pause}>stop</button>
-    </div>
+    <PlayerContext.Provider value={playerContextInterface}>
+      <Commands />
+      <Queue />
+    </PlayerContext.Provider>
   );
 }
