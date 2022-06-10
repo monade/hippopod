@@ -169,6 +169,7 @@ export default function Commands({
           setCurrentTime(parseInt(event.target.value));
           audioPlayer.audio.currentTime = parseInt(event.target.value);
         }}
+        style={{ width: "100%" }}
       />
       <button
         onClick={() => {
