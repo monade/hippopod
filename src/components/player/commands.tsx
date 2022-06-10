@@ -1,23 +1,29 @@
 import React from "react";
-import playerContext from "./playerContext";
-import PlayPauseButton from "./playPauseButton";
-import SkipSecondsButton from "./skipSecondsButton";
 
-export default function Commands() {
-  const ctx = React.useContext(playerContext);
+interface CommandsPropsInterface {
+  setIsQueueVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const [isPlaying, setIsPlaying] = React.useState(false);
+export default function Commands({
+  setIsQueueVisible,
+}: CommandsPropsInterface) {
+
+  const triggerShowQueue = () => {
+    console.log("aljsdja");
+    setIsQueueVisible((prev) => !prev);
+  };
 
   return (
     <div>
-      <h1>COMMADNS</h1>
-      <SkipSecondsButton seconds={-10} />
+      <h1>COMMANDS</h1>
+      <button onClick={() => triggerShowQueue()}>show queue</button>
+      {/* <SkipSecondsButton seconds={-10} />
       <PlayPauseButton />
       <SkipSecondsButton seconds={10} />
-      <div>titolo: {ctx?.getCurrentEpisode().title}</div>
-      <div>data: {ctx?.getCurrentEpisode().date.toString()}</div>
+      <div>titolo: {ctx?.getCurrentEpisode()?.title}</div>
+      <div>data: {ctx?.getCurrentEpisode()?.date.toString()}</div>
       <div>durata: {ctx?.audioPlayer.getDuration()} seconds</div>
-      <div>dimensione: {ctx?.getCurrentEpisode().size} Bytes</div>
+      <div>dimensione: {ctx?.getCurrentEpisode()?.size} Bytes</div>
       <div>tempo trascorso: {ctx?.audioPlayer.getCurrentTime()} seconds</div>
       <div>
         percentuale di progresso:{" "}
@@ -34,12 +40,12 @@ export default function Commands() {
       <div>volume: TODO</div>
       <button>velocità</button>
       <a
-        href={ctx?.getCurrentEpisode().url}
-        download={ctx?.getCurrentEpisode().url.split("/").pop()}
+        href={ctx?.getCurrentEpisode()?.url}
+        download={ctx?.getCurrentEpisode()?.url.split("/").pop()}
       >
         scarica
       </a>
-      <button>apri/chiudi coda</button>
+      <button>apri/chiudi coda</button> */}
     </div>
   );
 }

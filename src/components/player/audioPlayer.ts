@@ -1,4 +1,4 @@
-import { EpisodeContextInterface } from "./types";
+import { EpisodeContextType } from "../../store/playerContext";
 
 export class AudioPlayer {
   audio: HTMLAudioElement = new Audio();
@@ -11,7 +11,7 @@ export class AudioPlayer {
     this.audio.addEventListener("error", this.onError.bind(this));
   }
 
-  setEpisode(episode: EpisodeContextInterface) {
+  setEpisode(episode: EpisodeContextType) {
     this.audio.src = episode.url;
     this.audio.load();
     this.isReady = true;
