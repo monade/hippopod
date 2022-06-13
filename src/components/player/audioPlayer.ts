@@ -1,5 +1,7 @@
 import { EpisodeContextType } from "../../store/playerContext";
 
+//TODO: THE LOADING BOOLEAN IS NOT CORRECT, I DO NOT REALLY KNOW HOW TO DETECT IF THE AUDIO IS LOADING OR NOT
+
 export class AudioPlayer {
   audio: HTMLAudioElement = new Audio();
   _currentTime: number = 0;

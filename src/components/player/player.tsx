@@ -27,7 +27,7 @@ export default function Player() {
       type: Types.AddEpisodeToTopOfQueue,
       payload: {
         id: Math.random().toString(),
-        url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
+        url: "https://api.spreaker.com/download/episode/49986136/37_crociateoccidente.mp3",
         date: new Date(),
         size: 40000000,
         title: "TOP OF QUEUE #36 Tra guerra santa e Jihad - Le crociate",
