@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { Types } from "../../store/playerReducer";
+import "./queue.scss";
 
 interface QueuePropsInterface {
   isQueueVisible: boolean;

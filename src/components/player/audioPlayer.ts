@@ -91,14 +91,6 @@ export class AudioPlayer {
     this.audio.currentTime += seconds;
   }
 
-  download() {
-    if (!this.audio.src) {
-      return;
-      // throw new Error("No audio source");
-    }
-    window.open(this.audio.src, "_blank");
-  }
-
   setVolume(volume: number) {
     this.audio.volume = volume;
   }

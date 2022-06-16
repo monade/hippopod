@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import config from "./data/arguments.json";
 import "./index.scss";
+import { PlayerProvider } from "./store/playerContext";
 import Bani from "./templates/bani/bani";
 import Cubango from "./templates/cubango/cubango";
 import Zambezi from "./templates/zambezi/zambezi";
@@ -15,7 +16,11 @@ switch (config.theme) {
     root.render(<Bani />);
     break;
   case "cubango":
-    root.render(<Cubango />);
+    root.render(
+      <PlayerProvider>
+        <Cubango />
+      </PlayerProvider>
+    );
     break;
   case "zambezi":
     root.render(<Zambezi />);

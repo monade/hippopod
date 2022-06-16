@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
-import { Types } from "../../store/playerReducer";
+import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
+import Icon from "../utils/icon";
+import "./commands.scss";
 
 interface CommandsPropsInterface {
   isQueueVisible: boolean;
@@ -14,12 +16,6 @@ enum PlaybackRates {
   FAST = 1.5,
   FASTEST = 2,
   EXTRA_FAST = 10,
-}
-
-function getPlaybackRateKeyByValue(value: number) {
-  return Object.keys(PlaybackRates)[
-    Object.values(PlaybackRates).indexOf(value as unknown as PlaybackRates)
-  ];
 }
 
 export default function Commands({
@@ -125,89 +121,93 @@ export default function Commands({
   };
 
   return (
-    <div>
-      <h1>COMMANDS</h1>
-      <h3>Title: {currentEpisode?.title || "<no track>"}</h3>
-      <p>
-        <strong>Date: </strong>
-        {currentEpisode?.date ? currentEpisode.date.toString() : "<no date>"}
-      </p>
-      <p>
-        <strong>URL: </strong>
-        {currentEpisode?.url || "<no url>"}
-      </p>
-      <p>
-        <strong>Time elapsed in seconds: </strong>
-        {audioPlayer.currentTime} seconds of {audioPlayer.duration} seconds
-      </p>
-      <p>
-        <strong>Time to the end in seconds: </strong>
-        {audioPlayer.duration && audioPlayer.currentTime
-          ? audioPlayer.duration - audioPlayer.currentTime
-          : 0}
-        seconds
-      </p>
-      <p>
-        <strong>Size: </strong>
-        {currentEpisode?.size || 0} Bytes
-      </p>
-      <p>
-        <strong>Percentuale di progresso: </strong>
-        {audioPlayer.duration &&
-        audioPlayer.duration !== 0 &&
-        audioPlayer.currentTime
-          ? audioPlayer.currentTime / audioPlayer.duration
-          : 0}
-        %
-      </p>
-      <input
-        type="range"
-        min="0"
-        max={audioPlayer.duration}
-        value={currentTime}
-        onChange={(event) => {
-          setCurrentTime(parseInt(event.target.value));
-          audioPlayer.audio.currentTime = parseInt(event.target.value);
-        }}
-        style={{ width: "100%" }}
-      />
-      <button
-        onClick={() => {
-          skipSeconds(-10);
-        }}
-      >
-        -10 seconds
-      </button>
-      <button
-        onClick={() => {
-          if (isLoading) {
-            return;
-          }
-          playOrPause();
-        }}
-      >
-        {isLoading ? "Loading..." : isPlaying ? "Pause" : "Play"}
-      </button>
-      <button
-        onClick={() => {
-          skipSeconds(+10);
-        }}
-      >
-        +10 seconds
-      </button>
-      <button onClick={audioPlayer.download}>download</button>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={isMuted ? 0 : volume}
-        onChange={(event) => setVolume(parseInt(event.target.value))}
-      />
-      <button onClick={triggerMuted}>{isMuted ? "unmute" : "mute"}</button>
-      <button onClick={changePlaybackRate}>{playbackRate}x</button>
-      <button onClick={triggerShowQueue}>
-        {isQueueVisible ? "Hide" : "Show"} queue
-      </button>
+    <div className="commands-background">
+      <div className="commands-container flex-row justify-content-between align-items-center">
+        <div className="flex-row">
+          <Icon
+            iconRelativePath="player/back10"
+            pimpSvg={(svg) => {
+              console.log(svg);
+            }}
+          />
+          <button
+            onClick={() => {
+              skipSeconds(-10);
+            }}
+          >
+            -10
+          </button>
+          <button
+            onClick={() => {
+              if (isLoading) {
+                return;
+              }
+              playOrPause();
+            }}
+          >
+            {isLoading ? "Loading..." : isPlaying ? "Pause" : "Play"}
+          </button>
+          <button
+            onClick={() => {
+              skipSeconds(+10);
+            }}
+          >
+            +10
+          </button>
+        </div>
+        <div className="flex-column">
+          <p className="text-no-wrap">{currentEpisode?.title}</p>
+          <p>
+            {getDateString(currentEpisode?.date)} ·{" "}
+            {getTimeStringFromSeconds(audioPlayer.duration || null)} ·{" "}
+            {currentEpisode?.size} MB
+          </p>
+        </div>
+        <div className="flex-row">
+          <p>{getTimeStringFromSeconds(audioPlayer.currentTime || null)}</p>
+          <input
+            type="range"
+            min="0"
+            max={audioPlayer.duration}
+            value={currentTime}
+            onChange={(event) => {
+              setCurrentTime(parseInt(event.target.value));
+              audioPlayer.audio.currentTime = parseInt(event.target.value);
+            }}
+          />
+          <p>
+            {audioPlayer.duration && audioPlayer.currentTime ? "-" : ""}
+            {getTimeStringFromSeconds(
+              audioPlayer.duration && audioPlayer.currentTime
+                ? audioPlayer.duration - audioPlayer.currentTime
+                : null
+            )}
+          </p>
+        </div>
+        <div className="flex-row">
+          <button onClick={triggerMuted}>{isMuted ? "unmute" : "mute"}</button>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={isMuted ? 0 : volume}
+            onChange={(event) => setVolume(parseInt(event.target.value))}
+          />
+        </div>
+        <div className="flex-row">
+          <button onClick={changePlaybackRate}>{playbackRate}x</button>
+          <button
+            onClick={() => {
+              window.open(currentEpisode?.url || "", "_blank");
+            }}
+          >
+            download
+          </button>
+          <button onClick={triggerShowQueue}>
+            {isQueueVisible ? "Hide" : "Show"} queue
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
