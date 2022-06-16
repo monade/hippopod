@@ -31,7 +31,7 @@ export default function Icon({
 
   useEffect(() => {
     if (pimpSvg && spanRef.current?.childNodes[0]) {
-      (spanRef.current?.childNodes[0] as SVGSVGElement).style.fill = "red"
+      (spanRef.current?.childNodes[0] as SVGSVGElement).style.fill = "red";
         pimpSvg(
           (spanRef.current?.childNodes[0] as SVGSVGElement)
         );
