@@ -40,7 +40,7 @@ const Cubango = () => {
         url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
         date: new Date(),
         size: 7.12,
-        title: "END OF QUEUE #36 Tra guerra santa e Jihad - Le crociate",
+        title: "#36 Tra guerra santa e Jihad - Le crociate",
       },
     });
   };
@@ -53,7 +53,7 @@ const Cubango = () => {
         url: "https://api.spreaker.com/download/episode/49986136/37_crociateoccidente.mp3",
         date: new Date(),
         size: 12.34,
-        title: "TOP OF QUEUE #36 Tra guerra santa e Jihad - Le crociate",
+        title: "#36 Tra guerra santa e Jihad - Le crociate",
       },
     });
   };
@@ -68,7 +68,7 @@ const Cubango = () => {
         date: new Date(),
         size: 1.2,
         title:
-          "TOP OF QUEUE AND PLAY #36 Tra guerra santa e Jihad - Le crociate",
+          "#36 Tra guerra santa e Jihad - Le crociate",
       },
     });
     setPlayWhenPlayerIsReady({ id: ID, play: true });

@@ -13,7 +13,6 @@ export class AudioPlayer {
 
   constructor() {
     this.audio.addEventListener("ended", this.onEnded.bind(this));
-    // this.audio.addEventListener("timeupdate", this.onTimeUpdate.bind(this));
     this.audio.addEventListener("error", this.onError.bind(this));
   }
 
@@ -41,10 +40,6 @@ export class AudioPlayer {
     this.audio.currentTime = 0;
     this.audio.pause();
     this.goToNextEpisode = true;
-  }
-
-  onTimeUpdate() {
-    console.log("ciao");
   }
 
   onError() {

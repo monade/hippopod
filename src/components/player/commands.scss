@@ -7,47 +7,275 @@
   height: 100px;
 }
 
-.commands-container {
-  display: flex;
-  flex-direction: row;
-  max-width: 1080px;
-  height: 100%;
-  margin: 0 auto;
-}
+.commands {
+  .commands-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+  }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
 
-.flex-center-center {
-  align-items: center;
-  justify-content: center;
-}
+  .flex-center-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.justify-content-between {
-  justify-content: space-between;
-}
+  .justify-content-between {
+    justify-content: space-between;
+  }
 
-.justify-content-center {
-  justify-content: center;
-}
+  .justify-content-center {
+    justify-content: center;
+  }
 
-.align-items-center {
-  align-items: center;
-}
+  .align-items-center {
+    align-items: center;
+  }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
+  .d-flex {
+    display: flex;
+  }
 
-.text-no-wrap {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
 
-p {
-  color: white;
+  .text-no-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title-section {
+    margin: 0px 24px;
+    min-width: 195px;
+    max-width: 250px;
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: white;
+    opacity: 0.4;
+  }
+
+  .time-track-section {
+    min-width: 300px;
+    width: 100%;
+    input[type="range"] {
+      width: 100%;
+      margin: 5px 0;
+      background-color: transparent;
+      -webkit-appearance: none;
+    }
+    input[type="range"]:focus {
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 2.5px;
+      width: 100%;
+      height: 5px;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      margin-top: -5px;
+      width: 15px;
+      height: 15px;
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 7.5px;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+      background: var(--primaryColor);
+    }
+    input[type="range"]::-moz-range-track {
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 2.5px;
+      width: 100%;
+      height: 5px;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 7.5px;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-track {
+      background: transparent;
+      border-color: transparent;
+      border-width: 5px 0;
+      color: transparent;
+      width: 100%;
+      height: 5px;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-fill-lower {
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 5px;
+    }
+    input[type="range"]::-ms-fill-upper {
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 5px;
+    }
+    input[type="range"]::-ms-thumb {
+      width: 15px;
+      height: 15px;
+      background: var(--primaryColor);
+      border: 0;
+      border-radius: 7.5px;
+      cursor: pointer;
+      margin-top: 0px;
+      /*Needed to keep the Edge thumb centred*/
+    }
+    input[type="range"]:focus::-ms-fill-lower {
+      background: var(--primaryColor);
+    }
+    input[type="range"]:focus::-ms-fill-upper {
+      background: var(--primaryColor);
+    }
+    /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+    how to remove the virtical space around the range input in IE*/
+    @supports (-ms-ime-align: auto) {
+      /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+      input[type="range"] {
+        margin: 0;
+        /*Edge starts the margin from the thumb, not the track as other browsers do*/
+      }
+    }
+  }
+
+  .time-track-slider {
+    width: 100%;
+  }
+
+  .time-track-timer {
+    width: 90px;
+    font-size: 12px;
+    color: white;
+    opacity: 0.4;
+  }
+
+  .right-timer {
+    margin-left: 8px;
+  }
+  .left-timer {
+    text-align: end;
+    margin-right: 8px;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .back-10-button {
+    margin-right: 8px;
+  }
+  .front-10-button {
+    margin-left: 8px;
+  }
+
+  .play-container {
+    position: relative;
+    width: 66px;
+    height: 66px;
+  }
+
+  .play-outer-circle {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0.8;
+  }
+
+  .play-image-container {
+    background-color: var(--secondaryColor);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    z-index: 30;
+    top: calc(50% - 28px);
+    left: calc(50% - 28px);
+  }
+
+  .play-or-pause-icon {
+    width: 66px;
+    height: 66px;
+    top: calc(50% - 33px);
+    left: calc(50% - 33px);
+    z-index: 40;
+  }
+
+  .position-absolute {
+    position: absolute;
+  }
+
+  .mute-unmute-icon {
+    margin: 0 8px 0 16px;
+  }
+
+  .download-icon,
+  .menu-icon {
+    transform: rotate(90deg);
+  }
+
+  .circle-command-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-left: 8px;
+  }
+
+  .clickable,
+  .clickable p,
+  .clickable svg {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+  }
+  .clickable:hover,
+  .clickable p:hover,
+  .clickable svg:hover {
+    transition: 0.2s ease-in-out;
+    color: rgba(255, 255, 255, 1);
+  }
+  .clickable:active,
+  .clickable p:active,
+  .clickable svg:active {
+    transition: 0.2s ease-in-out;
+    color: var(--primaryColor);
+  }
+
+  .left-circle-command-button {
+    margin-left: 16px;
+  }
+
+  p,
+  div {
+    color: white;
+  }
 }
