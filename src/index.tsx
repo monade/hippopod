@@ -8,9 +8,6 @@ import Bani from './templates/bani/bani'
 import Cubango from './templates/cubango/cubango';
 import Zambezi from './templates/zambezi/zambezi'
 
-const rootStyle = (document.querySelector(':root') as any).style;
-rootStyle.setProperty('--primary', `${config.color}`);
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -23,7 +20,7 @@ switch(config.theme) {
         break;
     case 'cubango':
         root.render(
-            <Cubango />
+            <Cubango color={config.color} themeMode={config.themeMode} links={config.links || {}} socials={config.socials || {}} />
         );
         break;
     case 'zambezi':

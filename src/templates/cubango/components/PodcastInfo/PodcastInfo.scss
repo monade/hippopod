@@ -1,0 +1,65 @@
+@import '../../variables';
+
+.podcast-info {
+  position: relative;
+  background-color: var(--primary-color);
+
+  &__header {
+    max-width: 60vw;
+    padding: 20px $horizontal-padding;
+
+    h1 {
+      font-size: 65px;
+      line-height: 1.2;
+      padding-top: 16px;
+    }
+  }
+
+  &__badge {
+    border: 2px solid #FFFFFF;
+    border-radius: 24px;
+    font-size: 15px;
+    letter-spacing: 0.53px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+  }
+
+  &__content {
+    padding: 78px $horizontal-padding;
+    background-color: var(--bg-color);
+
+    &__author {
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    &__description {
+      font-size: 16px;
+      overflow-y: hidden;
+    }
+
+    &__description.collapsed {
+      max-height: 70px;
+    }
+
+    &__description-toggle {
+      margin-top: 16px;
+      color: var(--primary-color);
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      outline: inherit;
+    }
+  }
+
+  &__content-inner {
+    max-width: 40vw;
+  }
+
+}

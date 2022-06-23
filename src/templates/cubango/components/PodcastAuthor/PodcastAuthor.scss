@@ -1,0 +1,20 @@
+@import '../../variables.scss';
+
+.podcast-author {
+  position: absolute;
+  top: 16px;
+  right: $horizontal-padding;
+  width: 352px;
+
+  img {
+    width: 352px;
+    height: 352px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 20px;
+    margin-bottom: 26px;
+  }
+
+  &__fields > :not(:last-child) {
+    margin-bottom: 16px;
+  }
+}

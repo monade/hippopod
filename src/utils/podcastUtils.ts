@@ -35,7 +35,7 @@ const parsePodcast = (feed: any): Omit<Podcast, 'feedUrl'> => {
       durationSeconds: +findByPaths(item, ['duration', 'itunes:duration', 'googleplay:duration']),
       publicationDate: parseDate(findByPaths(item, ['pubDate', 'itunes:pubDate', 'googleplay:pubDate', 'lastBuildDate'])),
     })),
-    lastBuildDate: channel.lastBuildDate,
+    lastBuildDate: parseDate(channel.lastBuildDate),
     language: channel.language,
     copyright: channel.copyright
   };
@@ -56,7 +56,7 @@ const findMultipleByPaths = (tag: any, paths: string[]): string[] => {
     matches.push(...findMultipleByPath(tag, path).filter(match => !matches.includes(match.toLowerCase().trim())));
   }
 
-  return matches;
+  return matches.filter((value, index, self) => self.indexOf(value) === index);
 }
 
 const findMultipleByPath = (tag: any, path: string): string[] => {

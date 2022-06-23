@@ -9,3 +9,20 @@ html {
   grid-template-rows: 35vh;
   grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 18rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
 }
+
+.main {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+:root {
+  --dark-mode-bg-color: #1A2028;
+  --dark-mode-text-color: white;
+  
+  --light-mode-bg-color: white;
+  --light-mode-text-color: #1A2028;
+
+  --primary-color: #2EB170;
+  --bg-color: $dark-mode-bg-color;
+  --text-color: $dark-mode-text-color;
+}
