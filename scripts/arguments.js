@@ -1,9 +1,8 @@
 const { themes } = require("./themes");
-
-const themeMode = ['light', 'dark'];
+const { themeModes } = require("./theme-modes");
 
 module.exports.checkCorrectArguments = (argv) => {
-  if(argv.length !== 3 || !module.exports.isHexColor(argv[0]) || !themes.includes(argv[1]) || !themeMode.includes(argv[2])) {
+  if(argv.length !== 3 || !module.exports.isHexColor(argv[0]) || !themes.includes(argv[1]) || !themeModes.includes(argv[2])) {
     console.log("\n", "Usage: node start.js <color> <theme>", "\n");
     console.log("    <color> is the primary color of the theme");
     console.log("                    it should be a hexadecimal color (es. ffffff)", "\n");

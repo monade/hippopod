@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Podcast } from "../../models/podcast";
 import { getPodcast } from "../../utils/podcastUtils";
 import './cubango.scss'
@@ -10,6 +10,8 @@ import { Socials } from "../../models/socials";
 import { EpisodesLayout } from "../../models/episodes-layout";
 import {Episode} from "../../models/episode";
 import Footer from "./components/Footer/Footer";
+import {Types} from "../../store/playerReducer";
+import {playerContext} from "../../store/playerContext";
 
 interface Props {
     color: string;
@@ -26,12 +28,103 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
     const [textColorOnPrimary, setTextColorOnPrimary] = useState<string>('white');
     const [episodesLayout, setEpisodesLayout] = useState<EpisodesLayout>('list');
 
+  const { state, dispatch } = useContext(playerContext);
+
+  const [playWhenPlayerIsReady, setPlayWhenPlayerIsReady] = useState({
+    id: "",
+    play: false,
+  });
+
+  const addEpisodeToEndOfQueue = () => {
+    dispatch({
+      type: Types.AddEpisodeToEndOfQueue,
+      payload: {
+        id: Math.random().toString(),
+        url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
+        date: new Date(),
+        size: 7.12,
+        title: "#36 Tra guerra santa e Jihad - Le crociate - e un altro pezzo di titolo per farlo più lungo ecco.",
+      },
+    });
+  };
+
+  const addEpisodeToTopOfQueue = () => {
+    dispatch({
+      type: Types.AddEpisodeToTopOfQueue,
+      payload: {
+        id: Math.random().toString(),
+        url: "https://api.spreaker.com/download/episode/49986136/37_crociateoccidente.mp3",
+        date: new Date(),
+        size: 12.34,
+        title: "#36 Tra guerra santa e Jihad - Le crociate",
+      },
+    });
+  };
+
+  const addEpisodeToTopOfQueueAndPlay = () => {
+    const ID = Math.random().toString();
+    dispatch({
+      type: Types.AddEpisodeToTopOfQueue,
+      payload: {
+        id: ID,
+        url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
+        date: new Date(),
+        size: 1.2,
+        title:
+          "#36 Tra guerra santa e Jihad - Le crociate",
+      },
+    });
+    setPlayWhenPlayerIsReady({ id: ID, play: true });
+  };
+
+  const getNextTrack = () => {
+    return state.queue.length > 1 ? state.queue[1] : null;
+  };
+
     useEffect(() => {
         setStyle(color, themeMode);
         setTextColorOnPrimary(calcTextColorOnPrimary(color))
         getPodcast(links.rssFeed).then(res => setPodcast(res));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+  useEffect(() => {
+    if (!state.audioPlayer.goToNextEpisode) {
+      return;
+    }
+    const nextTrackId = getNextTrack()?.id;
+    dispatch({
+      type: Types.DeleteEpisode,
+      payload: {
+        id: state.queue[0].id,
+      },
+    });
+    setPlayWhenPlayerIsReady({
+      id: nextTrackId || "",
+      play: Boolean(nextTrackId),
+    });
+  }, [state.audioPlayer.goToNextEpisode]);
+
+  useEffect(() => {
+    if (
+      playWhenPlayerIsReady.play &&
+      state.audioPlayer.isReady &&
+      state.audioPlayer.episode?.id === playWhenPlayerIsReady.id
+    ) {
+      state.audioPlayer.play();
+      setPlayWhenPlayerIsReady({
+        id: "",
+        play: false,
+      });
+    }
+  }, [
+    playWhenPlayerIsReady,
+    playWhenPlayerIsReady.id,
+    playWhenPlayerIsReady.play,
+    state.queue,
+    state.audioPlayer.isReady,
+    state.audioPlayer.episode,
+  ]);
 
     const lastUpdate = podcast ? getLastUpdate(podcast) : undefined;
 
@@ -50,6 +143,7 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
               onQueueEpisode={queueEpisode}
             />
             <Footer />
+            <Player />
         </main>
     ) : (
         <span>Loading...</span>

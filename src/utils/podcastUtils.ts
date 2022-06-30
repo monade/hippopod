@@ -1,5 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
-import moment from 'moment';
+import moment from "moment";
 import { Podcast } from "../models/podcast";
 
 export const getPodcast = async (feedUrl: string): Promise<any> => {
@@ -7,15 +7,15 @@ export const getPodcast = async (feedUrl: string): Promise<any> => {
   const feed = new XMLParser({ ignoreAttributes: false }).parse(feedText);
   return {
     feedUrl,
-    ...parsePodcast(feed)
+    ...parsePodcast(feed),
   };
-}
+};
 
 const getFeedText = (url: string) => {
   return fetch(url).then(res => res.text());
-}
+};
 
-const parsePodcast = (feed: any): Omit<Podcast, 'feedUrl'> => {
+const parsePodcast = (feed: any): Omit<Podcast, "feedUrl"> => {
   const channel = feed.rss.channel;
 
   return {
@@ -37,9 +37,9 @@ const parsePodcast = (feed: any): Omit<Podcast, 'feedUrl'> => {
     })),
     lastBuildDate: parseDate(channel.lastBuildDate),
     language: channel.language,
-    copyright: channel.copyright
+    copyright: channel.copyright,
   };
-}
+};
 
 const parseDate = (dateString: string): Date | undefined => {
   if (!dateString) {
@@ -84,7 +84,7 @@ const findMultipleByPath = (tag: any, path: string): string[] => {
 
       return [];
     } else {
-      const childAsArray = Array.isArray(child) ? child : [ child ];
+      // const childAsArray = Array.isArray(child) ? child : [ child ];
 
       if (Array.isArray(child)) {
         return child.reduce((accumulator, current) =>
@@ -113,10 +113,10 @@ const findByPaths = (tag: any, paths: string[]): any | null => {
   }
 
   return null;
-}
+};
 
 const findByPath = (tag: any, path: string): any | null => {
-  const pathSegments = path.split('.');
+  const pathSegments = path.split(".");
 
   if (!pathSegments.length) {
     return null;

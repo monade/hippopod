@@ -1,0 +1,34 @@
+.circular {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.circular .bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.circle .bar .progress {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.circle .left .progress {
+  z-index: 1;
+}
+
+.circle .right {
+  z-index: 3;
+}
+
+.hide-right {
+  overflow: hidden;
+}
+.hide-left {
+  overflow: hidden;
+}

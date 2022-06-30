@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import './index.scss';
-import config from './data/arguments.json'
-
-import Bani from './templates/bani/bani'
-import Cubango from './templates/cubango/cubango';
-import Zambezi from './templates/zambezi/zambezi'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import config from "./data/arguments.json";
+import "./index.scss";
+import { PlayerProvider } from "./store/playerContext";
+import Bani from "./templates/bani/bani";
+import Cubango from "./templates/cubango/cubango";
+import Zambezi from "./templates/zambezi/zambezi";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 switch(config.theme) {
@@ -20,7 +19,9 @@ switch(config.theme) {
         break;
     case 'cubango':
         root.render(
+          <PlayerProvider>
             <Cubango color={config.color} themeMode={config.themeMode} links={config.links || {}} socials={config.socials || {}} />
+          </PlayerProvider>
         );
         break;
     case 'zambezi':
@@ -29,8 +30,6 @@ switch(config.theme) {
         )
         break;
 }
-
-reportWebVitals();
 
 // const feeds = [
 //   'https://podcast.radiopopolare.it/podcast/popolare-gr.xml',
