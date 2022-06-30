@@ -12,6 +12,7 @@ import {Episode} from "../../models/episode";
 import Footer from "./components/Footer/Footer";
 import {Types} from "../../store/playerReducer";
 import {playerContext} from "../../store/playerContext";
+import {Player} from "../../components";
 
 interface Props {
     color: string;
