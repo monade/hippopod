@@ -156,8 +156,6 @@ const setStyle = (color: string, themeMode: string) => {
 
     rootStyle.setProperty('--bg-color', computedStyle.getPropertyValue(`--${themeMode}-mode-bg-color`));
     rootStyle.setProperty('--text-color', computedStyle.getPropertyValue(`--${themeMode}-mode-text-color`));
-
-    
 }
 
 const calcTextColorOnPrimary = (color: string) => {

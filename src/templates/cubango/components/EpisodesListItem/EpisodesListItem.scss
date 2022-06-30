@@ -1,22 +1,50 @@
+@import '../../variables.scss';
+
 .episodes-list-item {
   height: 168px;
   display: flex;
   align-items: center;
 
   &__content {
-    margin-left: 40px;
     flex: 1;
     min-width: 0;
 
     h6 {
       text-transform: capitalize;
       display: block;
-      font-size: 28px;
       font-weight: bold;
       letter-spacing: 0px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (min-width: $xs-width) {
+  .episodes-list-item {
+    &__content {
+      margin-left: 40px;
+      font-size: 14px;
+
+      h6 {
+        font-size: 28px;
+        padding-bottom: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $xs-width - 1) {
+  .episodes-list-item {
+    &__content {
+      margin-left: 20px;
+      font-size: 10px;
+
+      h6 {
+        font-size: 14px;
+        padding-bottom: 6px;
+      }
     }
   }
 }

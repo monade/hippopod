@@ -15,7 +15,7 @@ const EpisodesGrid: React.FC<Props> = ({ episodes, imageUrl, onPlayEpisode, onQu
   const [shownEpisodes, setShownEpisodes] = useState<Episode[]>([]);
 
   useEffect(() => {
-    setShownEpisodes(isCollapsed ? episodes.slice(0, 8) : episodes);
+    setShownEpisodes(isCollapsed ? episodes.slice(0, 12) : episodes);
   }, [isCollapsed])
 
   const toggleIsCollapsed = () => setIsCollapsed(!isCollapsed);

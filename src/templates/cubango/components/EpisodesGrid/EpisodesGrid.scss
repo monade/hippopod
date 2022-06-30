@@ -1,7 +1,7 @@
+@import '../../variables';
+
 .episodes-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-row-gap: 36px;
   grid-column-gap: 16px;
 
   &__toggle {
@@ -23,4 +23,25 @@
 
 .episodes-grid > *:not(:last-child) {
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: $sm-width) {
+  .episodes-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-row-gap: 36px;
+  }
+}
+
+@media screen and (min-width: $xs-width) and (max-width: $sm-width - 1) {
+  .episodes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-row-gap: 24px;
+  }
+}
+
+@media screen and (max-width: $xs-width - 1) {
+  .episodes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-row-gap: 12px;
+  }
 }
