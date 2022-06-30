@@ -1,0 +1,15 @@
+.episode-info {
+  display: block;
+  padding-top: 12px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.episode-info > *:not(:last-child):after {
+  content:'\00B7';
+  padding: 0 6px;
+}

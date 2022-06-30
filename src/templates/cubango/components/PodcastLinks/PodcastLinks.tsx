@@ -2,11 +2,11 @@ import React from 'react';
 import { Links } from '../../../../models/links';
 import PodcastIcon from '../PodcastIcon/PodcastIcon';
 import './PodcastLinks.scss';
-import applePodcastsIcon from '../../icons/apple_podcasts.svg';
-import googlePodcastsIcon from '../../icons/google_podcasts.svg';
-import pocketCastsIcon from '../../icons/pocketcasts.svg';
-import spotifyIcon from '../../icons/spotify.svg';
-import rssFeedIcon from '../../icons/rss.svg';
+import applePodcastsIcon from '../../assets/apple_podcasts.svg';
+import googlePodcastsIcon from '../../assets/google_podcasts.svg';
+import pocketCastsIcon from '../../assets/pocketcasts.svg';
+import spotifyIcon from '../../assets/spotify.svg';
+import rssFeedIcon from '../../assets/rss.svg';
 
 interface Props {
   links: Links;

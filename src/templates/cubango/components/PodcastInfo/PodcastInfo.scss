@@ -3,9 +3,11 @@
 .podcast-info {
   position: relative;
   background-color: var(--primary-color);
+  margin-top: 35px;
 
   &__header {
     max-width: 60vw;
+    min-height: 264px;
     padding: 20px $horizontal-padding;
 
     h1 {
@@ -25,8 +27,9 @@
   }
 
   &__content {
-    padding: 78px $horizontal-padding;
+    padding: 78px $horizontal-padding 0 $horizontal-padding;
     background-color: var(--bg-color);
+    min-height: 280px;
 
     &__author {
       font-size: 17px;

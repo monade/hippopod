@@ -1,0 +1,19 @@
+.episodes-grid-item {
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    margin-top: 16px;
+
+    h6 {
+      text-transform: capitalize;
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

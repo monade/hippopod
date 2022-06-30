@@ -3,4 +3,14 @@
 .episodes {
   padding: 0 $horizontal-padding;
   background-color: var(--bg-color);
+
+  &__layout-selector-outer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  &__content {
+    padding: 35px 0 60px;
+  }
 }

@@ -1,0 +1,27 @@
+@import '../../variables';
+
+.footer {
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-color);
+  padding: 0 $horizontal-padding;
+
+  img {
+    height: 42px;
+    width: auto;
+  }
+
+  &__credits {
+    font-size: 14px;
+    letter-spacing: 0px;
+    text-align: right;
+
+    b {
+      display: block;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+  }
+}

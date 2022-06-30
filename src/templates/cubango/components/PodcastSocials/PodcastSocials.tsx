@@ -2,9 +2,9 @@ import React from 'react';
 import { Socials } from '../../../../models/socials';
 import PodcastIcon from '../PodcastIcon/PodcastIcon';
 import './PodcastSocials.scss';
-import facebookIcon from '../../icons/fb.svg';
-import instagramIcon from '../../icons/instagram.svg';
-import twitterIcon from '../../icons/twitter.svg';
+import facebookIcon from '../../assets/fb.svg';
+import instagramIcon from '../../assets/instagram.svg';
+import twitterIcon from '../../assets/twitter.svg';
 
 interface Props {
   socials: Socials;

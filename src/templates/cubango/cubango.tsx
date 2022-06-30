@@ -8,6 +8,8 @@ import Episodes from "./components/Episodes/Episodes";
 import { Links } from "../../models/links";
 import { Socials } from "../../models/socials";
 import { EpisodesLayout } from "../../models/episodes-layout";
+import {Episode} from "../../models/episode";
+import Footer from "./components/Footer/Footer";
 
 interface Props {
     color: string;
@@ -33,11 +35,21 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
 
     const lastUpdate = podcast ? getLastUpdate(podcast) : undefined;
 
+    const playEpisode = (episode: Episode) => console.log('PLAY', episode);
+    const queueEpisode = (episode: Episode) => console.log('QUEUE', episode);
+
     return podcast ? (
         <main className="main">
             <StickyHeader title={podcast.title} imageUrl={podcast.imageUrl} lastBuildDate={lastUpdate} textColor={textColorOnPrimary} />
             <PodcastInfo podcast={podcast} links={links} socials={socials} textColorOnPrimary={textColorOnPrimary} />
-            <Episodes layout={episodesLayout} onLayoutSelect={layout => setEpisodesLayout(layout)}></Episodes>
+            <Episodes
+              podcast={podcast}
+              layout={episodesLayout}
+              onLayoutSelect={layout => setEpisodesLayout(layout)}
+              onPlayEpisode={playEpisode}
+              onQueueEpisode={queueEpisode}
+            />
+            <Footer />
         </main>
     ) : (
         <span>Loading...</span>

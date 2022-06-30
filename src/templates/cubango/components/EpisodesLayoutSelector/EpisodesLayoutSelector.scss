@@ -1,6 +1,16 @@
 .episodes-layout-selector {
   display: flex;
   align-items: center;
+
+  &__icon {
+    height: 13px;
+    width: auto;
+    fill: #848484;
+  }
+
+  &__icon.active {
+    fill: var(--primary-color);
+  }
 }
 
 .episodes-layout-selector > *:first-child {

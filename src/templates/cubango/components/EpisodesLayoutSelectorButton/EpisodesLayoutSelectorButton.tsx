@@ -1,20 +1,22 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import { EpisodesLayout } from '../../../../models/episodes-layout';
 import './EpisodesLayoutSelectorButton.scss';
 
 interface Props {
   label: string;
-  iconSrc: string;
   layout: EpisodesLayout;
   isSelected: boolean;
   onSelect: () => void
 }
 
-const EpisodesLayoutSelectorButton: React.FC<Props> = ({ label, iconSrc, layout, isSelected, onSelect }) => {
+const EpisodesLayoutSelectorButton: React.FC<PropsWithChildren<Props>> = ({ label, layout, isSelected, onSelect, children }) => {
+  const labelClasses = isSelected ? 'active' : '';
+
   return (
     <button className='episodes-layout-selector-button' onClick={ () => onSelect() }>
-      <img src={iconSrc} alt={label} />
-      {label}
+      <div className='episodes-layout-selector-button__backdrop'></div>
+      {children}
+      <span className={labelClasses}>{label}</span>
     </button>
   )
 }
