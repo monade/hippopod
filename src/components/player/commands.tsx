@@ -15,8 +15,10 @@ enum PlaybackRates {
   SLOW = 0.5,
   NORMAL = 1,
   FAST = 1.5,
-  FASTEST = 2,
-  EXTRA_FAST = 10,
+  FASTER = 2,
+  MORE_FASTER = 4,
+  FASTEST = 6,
+  MOST_FASTEST = 8,
 }
 
 export default function Commands({
@@ -271,12 +273,20 @@ export default function Commands({
             />
           </div>
 
-          <div className="clickable circle-command-button flex-center-center" onClick={triggerShowQueue}>
+          <div
+            className="clickable circle-command-button flex-center-center position-relative"
+            onClick={triggerShowQueue}
+          >
             <Icon
               className="menu-icon flex-center-center"
               iconRelativePath="player/menu"
               svgStyles={muteUnmuteSvgStyles}
             />
+            {state.queue.length > 0 ? (
+              <div className="queue-length-tag">{state.queue.length}</div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

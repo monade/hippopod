@@ -274,6 +274,23 @@
     margin-left: 16px;
   }
 
+  .position-relative {
+    position: relative;
+  }
+
+  .queue-length-tag {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--primaryColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -7px;
+    right: -7px;
+    width: 21px;
+    height: 21px;
+  }
+
   p,
   div {
     color: white;

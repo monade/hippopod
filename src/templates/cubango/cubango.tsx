@@ -40,7 +40,7 @@ const Cubango = () => {
         url: "https://podcast.radiopopolare.it/podcast/popolare-gr.mp3",
         date: new Date(),
         size: 7.12,
-        title: "#36 Tra guerra santa e Jihad - Le crociate",
+        title: "#36 Tra guerra santa e Jihad - Le crociate - e un altro pezzo di titolo per farlo più lungo ecco.",
       },
     });
   };
