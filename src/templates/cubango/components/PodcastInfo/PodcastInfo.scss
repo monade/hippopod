@@ -19,6 +19,11 @@
     letter-spacing: 0.53px;
     text-transform: uppercase;
     padding: 5px 10px;
+    white-space: nowrap;
+  }
+
+  &__badge:not(:last-child) {
+    margin-right: 4px;
   }
 
   &__content {
@@ -63,7 +68,8 @@
 
     &__header {
       max-width: 60vw;
-      padding: 20px $horizontal-padding;
+      padding: 20px 60px 20px $horizontal-padding;
+      min-height: 250px;
 
       h1 {
         font-size: 65px;
@@ -100,9 +106,6 @@
   .podcast-info {
 
     &__header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 20px $horizontal-padding-sm;
 
       h1 {

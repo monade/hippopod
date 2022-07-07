@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import config from "./data/arguments.json";
+import jsonConfig from "./data/arguments.dev.json";
 import "./index.scss";
 import { PlayerProvider } from "./store/playerContext";
 import Bani from "./templates/bani/bani";
@@ -10,6 +10,9 @@ import Zambezi from "./templates/zambezi/zambezi";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const localConfig = localStorage.getItem('config') as any;
+const config = localConfig ? JSON.parse(localConfig) : jsonConfig;
 
 switch(config.theme) {
     case 'bani':

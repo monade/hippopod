@@ -40,6 +40,11 @@
   &__title {
     padding-left: 10px;
     flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
   }
 }
 

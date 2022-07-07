@@ -1,5 +1,9 @@
 .podcast-socials {
 
+  *:hover {
+    opacity: 0.9;
+  }
+
   *:not(:last-child) {
     margin-right: 12px;
   }

@@ -15,6 +15,10 @@
   &__fields > :not(:last-child) {
     margin-bottom: 16px;
   }
+
+  &__fields__contacts {
+    color: inherit;
+  }
 }
 
 @media screen and (min-width: $sm-width) {

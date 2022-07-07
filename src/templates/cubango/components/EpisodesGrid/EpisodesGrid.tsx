@@ -11,14 +11,14 @@ interface Props {
 }
 
 const EpisodesGrid: React.FC<Props> = ({ episodes, imageUrl, onPlayEpisode, onQueueEpisode }) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [shownEpisodes, setShownEpisodes] = useState<Episode[]>([]);
 
   useEffect(() => {
-    setShownEpisodes(isCollapsed ? episodes.slice(0, 12) : episodes);
-  }, [isCollapsed])
+    setShownEpisodes(sliceEpisodes(12));
+  }, [])
 
-  const toggleIsCollapsed = () => setIsCollapsed(!isCollapsed);
+  const sliceEpisodes = (episodesAmount: number) => episodes.slice(0, Math.min(episodesAmount, episodes.length));
+  const showMore = () => setShownEpisodes(sliceEpisodes(shownEpisodes.length + 12));
 
   const renderEpisodes = () => shownEpisodes.map((episode, index) =>
     <EpisodesGridItem
@@ -30,10 +30,8 @@ const EpisodesGrid: React.FC<Props> = ({ episodes, imageUrl, onPlayEpisode, onQu
     />
   );
 
-  const renderToggleButton = () => episodes.length > 4 ?
-    <button className='episodes-grid__toggle' onClick={() => toggleIsCollapsed()}>
-      {isCollapsed ? 'Load more' : 'Collapse'}
-    </button> :
+  const renderShowMoreButton = () => episodes.length !== shownEpisodes.length ?
+    <button className='episodes-grid__toggle' onClick={() => showMore()}>Load more</button> :
     '';
 
   return (
@@ -41,7 +39,7 @@ const EpisodesGrid: React.FC<Props> = ({ episodes, imageUrl, onPlayEpisode, onQu
       <div className='episodes-grid'>
         {renderEpisodes()}
       </div>
-      {renderToggleButton()}
+      {renderShowMoreButton()}
     </>
   );
 }

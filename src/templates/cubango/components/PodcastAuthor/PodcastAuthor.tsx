@@ -1,6 +1,6 @@
 import React from 'react';
-import { Podcast } from '../../../../models/podcast';
-import { Socials } from '../../../../models/socials';
+import {Podcast} from '../../../../models/podcast';
+import {Socials} from '../../../../models/socials';
 import PodcastAuthorField from '../PodcastAuthorField/PodcastAuthorField';
 import PodcastSocials from '../PodcastSocials/PodcastSocials';
 import './PodcastAuthor.scss';
@@ -10,19 +10,24 @@ interface Props {
   socials: Socials;
 }
 
-const PodcastAuthor: React.FC<Props> = ({ podcast, socials }) => {
+const PodcastAuthor: React.FC<Props> = ({podcast, socials}) => {
 
-  const renderImage = () => podcast.imageUrl ? <img src={podcast.imageUrl} alt={podcast.title} /> : null;
+  const renderImage = () => podcast.imageUrl ? <img src={podcast.imageUrl} alt={podcast.title}/> : null;
+  const renderSocials = () => Object.getOwnPropertyNames(socials)?.length ?
+    <PodcastAuthorField label='Social'>
+      <PodcastSocials socials={socials}/>
+    </PodcastAuthorField> :
+    '';
 
   return (
     <div className='podcast-author'>
-      { renderImage() }
+      {renderImage()}
       <div className='podcast-author__fields'>
         <PodcastAuthorField label='Author'>Di {podcast.author}</PodcastAuthorField>
-        <PodcastAuthorField label='Contacts'>{podcast.email}</PodcastAuthorField>
-        <PodcastAuthorField label='Social'>
-          <PodcastSocials socials={socials} />
+        <PodcastAuthorField label='Contacts'>
+          <a className='podcast-author__fields__contacts' href={`mailto:${podcast.email}`}>{podcast.email}</a>
         </PodcastAuthorField>
+        {renderSocials()}
       </div>
     </div>
   );
