@@ -1,0 +1,40 @@
+image: node:16
+
+stages:
+  - build
+  - deploy
+
+build:
+  cache:
+    untracked: true
+    key: "$CI_PROJECT_ID"
+    paths:
+      - node_modules
+  stage: build
+  script:
+    - apt-get update
+    - apt-get install zip
+    - yarn install
+#    - rm -rf build
+    - yarn build
+    - zip -r build.zip build
+  artifacts:
+    paths:
+      - build.zip
+    expire_in: 40 minutes
+  only:
+    - main
+
+deploy:
+  variables:
+    AWS_REGION: eu-central-1
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  stage: deploy
+  script:
+    - mkdir ~/.aws/
+    - cp $AWS_CREDENTIALS ~/.aws/credentials
+    - chmod 600 ~/.aws/credentials
+    - aws s3 rm $AWS_S3_BUCKET_URL/build.zip
+    - aws s3 cp ./build.zip $AWS_S3_BUCKET_URL
+  only:
+    - main
