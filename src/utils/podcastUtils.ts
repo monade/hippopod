@@ -2,6 +2,8 @@ import { XMLParser } from "fast-xml-parser";
 import moment from "moment";
 import { Podcast } from "../models/podcast";
 
+const CORS_PROXY_URL = 'https://ih6qnl4cq7.execute-api.eu-central-1.amazonaws.com/dev/proxy';
+
 export const getPodcast = async (feedUrl: string): Promise<any> => {
   const feedText = await getFeedText(feedUrl);
   const feed = new XMLParser({ ignoreAttributes: false }).parse(feedText);
@@ -12,7 +14,7 @@ export const getPodcast = async (feedUrl: string): Promise<any> => {
 };
 
 const getFeedText = (url: string) => {
-  return fetch(`https://ih6qnl4cq7.execute-api.eu-central-1.amazonaws.com/dev/proxy?url=${url}`).then(res => res.text());
+  return fetch(`${CORS_PROXY_URL}?url=${url}`).then(res => res.text());
 };
 
 const parsePodcast = (feed: any): Omit<Podcast, "feedUrl"> => {
