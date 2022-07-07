@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
-import config from './data/arguments.json'
+import { ARGUMENTS } from './data/arguments';
 
 import Bani from './templates/bani/bani'
 import Cubango from './templates/cubango/cubango';
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-switch(config.theme) {
+switch(ARGUMENTS.theme) {
     case 'bani':
         root.render(
             <Bani />

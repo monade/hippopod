@@ -1,0 +1,35 @@
+name: deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+    env:
+      NODE_ENV: production
+    steps:
+        - uses: actions/checkout@v3
+
+        - name: install dependencies
+          run: yarn install
+
+        - name: build
+          run: |
+            apt-get update
+            apt-get install zip
+            yarn install
+            yarn build
+            zip -r build.zip build
+
+        - name: deploy
+          uses: prewk/s3-cp-action@v2
+          with:
+            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            source: './build.zip'
+            dest: ${{ secrets.BUCKET_URL }}
