@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import jsonConfig from "./data/arguments.dev.json";
+// Change to arguments.dev.json while in developing
+import jsonConfig from "./data/arguments.json";
 import "./index.scss";
 import { PlayerProvider } from "./store/playerContext";
 import Bani from "./templates/bani/bani";
