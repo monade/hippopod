@@ -4,7 +4,7 @@ import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
 import Icon from "../utils/icon";
 import "./commands.scss";
-import config from "../../data/arguments.json";
+import { ARGUMENTS } from "../../data/arguments";
 
 interface CommandsPropsInterface {
   isQueueVisible: boolean;
@@ -179,7 +179,7 @@ export default function Commands({
             <div className="play-outer-circle position-absolute"></div>
             <CircularProgressBar
               percentage={currentTime / audioPlayer.duration}
-              color={`#${(config as any).color}`}
+              color={`#${(ARGUMENTS as any).color}`}
               diameter={playerDiameter}
             />
             <img
