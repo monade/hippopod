@@ -25,7 +25,8 @@ const parsePodcast = (feed: any): Omit<Podcast, "feedUrl"> => {
     email: findByPaths(channel, ['itunes:owner.itunes:email']),
     categories: findMultipleByPaths(channel, ['category', 'itunes:category', 'itunes:category.@_text', 'googleplay:category', 'googleplay:category.@_text']),
     imageUrl: findByPaths(channel, ['image.url', 'itunes:image.url', 'googleplay:image.url']),
-    episodes: (channel.item as any[]).map(item => ({
+    episodes: (channel.item as any[]).map((item, index) => ({
+      id: index,
       title: item.title,
       description: findByPaths(item, ['description', 'itunes:description', 'googleplay:description']),
       url: findByPath(item, 'enclosure.@_url'),

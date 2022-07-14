@@ -13,6 +13,7 @@ export type EpisodeContextType = {
   date: Date;
   size: number;
   title: string;
+  imageUrl: string;
 };
 
 const initialState: PlayerContextType = {

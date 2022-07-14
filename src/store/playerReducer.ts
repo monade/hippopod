@@ -46,6 +46,7 @@ export const queueReducer = (
           date: action.payload.date,
           size: action.payload.size,
           title: action.payload.title,
+          imageUrl: action.payload.imageUrl,
         },
       ];
     case Types.AddEpisodeToTopOfQueue:
@@ -56,6 +57,7 @@ export const queueReducer = (
           date: action.payload.date,
           size: action.payload.size,
           title: action.payload.title,
+          imageUrl: action.payload.imageUrl,
         },
         ...state,
       ];

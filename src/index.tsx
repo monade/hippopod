@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-switch(config.theme) {
+switch((config as any).theme) {
     case 'bani':
         root.render(
             <Bani />
@@ -20,7 +20,7 @@ switch(config.theme) {
     case 'cubango':
         root.render(
           <PlayerProvider>
-            <Cubango color={config.color} themeMode={config.themeMode} links={config.links || {}} socials={config.socials || {}} />
+            <Cubango color={(config as any).color} themeMode={(config as any).themeMode} links={(config as any).links || {}} socials={(config as any).socials || {}} />
           </PlayerProvider>
         );
         break;

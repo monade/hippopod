@@ -60,47 +60,47 @@ export default function Queue({ isQueueVisible }: QueuePropsInterface) {
                 </div>
               </div>
               <div className="queue-episode-list">
-              {queue?.map((episode, index) => (
-                <div
-                  className="queue-episode-item horizontal-queue-padding episode-height"
-                  key={episode.id}
-                  onClick={() => {
-                    let episodesToRemove: string[] = [];
-                    state.queue.forEach((episode, i) => {
-                      if (i < index) {
-                        episodesToRemove.push(episode.id);
-                      }
-                    });
-                    episodesToRemove.forEach((id) => {
-                      removeTrack(id);
-                    });
-                    setTimeout(() => {
-                      state.audioPlayer.playOrPause();
-                    }, 250);
-                  }}
-                >
-                  <img
-                    alt="Episode"
-                    src="https://picsum.photos/68/68"
-                    className={`queue-episode-image ${
-                      index === 0 ? "queue-episode-image-first" : ""
-                    }`}
-                  />
-                  <div className="queue-episode-title">{episode.title}</div>
+                {queue?.map((episode, index) => (
                   <div
-                    className="remove-episode-icon-container"
+                    className="queue-episode-item horizontal-queue-padding episode-height"
+                    key={episode.id}
                     onClick={() => {
-                      removeTrack(episode.id);
+                      let episodesToRemove: string[] = [];
+                      state.queue.forEach((episode, i) => {
+                        if (i < index) {
+                          episodesToRemove.push(episode.id);
+                        }
+                      });
+                      episodesToRemove.forEach((id) => {
+                        removeTrack(id);
+                      });
+                      setTimeout(() => {
+                        state.audioPlayer.playOrPause();
+                      }, 250);
                     }}
                   >
-                    <Icon
-                      className="remove-episode-icon"
-                      iconRelativePath="player/back10"
-                      svgStyles={deleteIconStyles}
+                    <img
+                      alt="Episode"
+                      src="https://picsum.photos/68/68"
+                      className={`queue-episode-image ${
+                        index === 0 ? "queue-episode-image-first" : ""
+                      }`}
                     />
+                    <div className="queue-episode-title">{episode.title}</div>
+                    <div
+                      className="remove-episode-icon-container"
+                      onClick={() => {
+                        removeTrack(episode.id);
+                      }}
+                    >
+                      <Icon
+                        className="remove-episode-icon"
+                        iconRelativePath="player/back10"
+                        svgStyles={deleteIconStyles}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
               </div>
             </div>
           </div>

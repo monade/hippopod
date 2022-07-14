@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { playerContext } from "../../store/playerContext";
-import { Types } from "../../store/playerReducer";
 import Commands from "./commands";
 import "./player.scss";
 import Queue from "./queue";
@@ -30,6 +29,7 @@ export default function Player() {
             setIsQueueVisible={setIsQueueVisible}
           />
           <Queue isQueueVisible={isQueueVisible} />
+          <div className="player-space" />
         </>
       )}
     </>

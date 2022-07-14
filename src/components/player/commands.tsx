@@ -4,6 +4,7 @@ import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
 import Icon from "../utils/icon";
 import "./commands.scss";
+import config from "../../data/arguments.json";
 
 interface CommandsPropsInterface {
   isQueueVisible: boolean;
@@ -104,7 +105,7 @@ export default function Commands({
       timeTrackSlider.current as any
     ).style.background = `background: linear-gradient(
       90deg,
-      var(--primaryColor) ${currentTime / audioPlayer.duration}%,
+      var(--primary-color) ${currentTime / audioPlayer.duration}%,
       rgba(255, 255, 255, 0.4) ${currentTime / audioPlayer.duration}%
     )`;
   }, [currentTime]);
@@ -178,12 +179,12 @@ export default function Commands({
             <div className="play-outer-circle position-absolute"></div>
             <CircularProgressBar
               percentage={currentTime / audioPlayer.duration}
-              color="#2EB170"
+              color={`#${(config as any).color}`}
               diameter={playerDiameter}
             />
             <img
               className="play-image-container position-absolute"
-              src="https://picsum.photos/68/68"
+              src={currentEpisode?.imageUrl}
             />
             <Icon
               className="position-absolute play-or-pause-icon flex-center-center"
