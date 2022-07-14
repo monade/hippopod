@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// Change to arguments.dev.json while in developing
-import jsonConfig from "./data/arguments.dev.json";
+import { ARGUMENTS } from './data/arguments';
 import "./index.scss";
 import { PlayerProvider } from "./store/playerContext";
 import Bani from "./templates/bani/bani";
@@ -13,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 
 const localConfig = localStorage.getItem('config') as any;
-const config = localConfig ? JSON.parse(localConfig) : jsonConfig;
+const config = localConfig ? JSON.parse(localConfig) : ARGUMENTS;
 
 switch(config.theme) {
     case 'bani':
@@ -42,6 +41,4 @@ switch(config.theme) {
 //   'https://www.omnycontent.com/d/playlist/60311b15-274a-4e3f-8ba9-ac3000834f37/0c2cf638-f8c9-4d9e-8cc3-ae7f01104abc/c1aea8ba-bda1-487d-ac8d-ae7f01104ad8/podcast.rss',
 //   'https://feeds.megaphone.fm/storiedibrand'
 // ]
-// for (const feed of feeds) {
-//   getPodcast(feed).then(podcast => console.log(podcast));
-// }
+
