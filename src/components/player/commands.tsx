@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
 import Icon from "../utils/icon";
 import "./commands.scss";
 import { ARGUMENTS } from "../../data/arguments";
+import {colord} from "colord";
 
 interface CommandsPropsInterface {
   isQueueVisible: boolean;
@@ -151,8 +152,24 @@ export default function Commands({
     audioPlayer.setPlaybackRate(nextPlaybackValue);
   };
 
+  const background = useMemo(() => {
+    const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+
+    if (ARGUMENTS.themeMode === "dark") {
+      return colord(bgColor).lighten(0.05).toHex();
+    }
+    return bgColor;
+  }, []);
+
+  const border = useMemo(() => {
+    if (ARGUMENTS.themeMode === "dark") {
+      return '1px solid #4B4F55';
+    }
+    return '1px solid #CECECE'
+  }, []);
+
   return (
-    <div className="commands commands-background">
+    <div className="commands commands-background" style={{ backgroundColor: background, borderTop: border }}>
       <div className="commands-container flex-row justify-content-between align-items-center">
         <div className="flex-row flex-center-center">
           <div
