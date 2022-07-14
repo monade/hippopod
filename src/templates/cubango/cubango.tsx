@@ -183,6 +183,7 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
         podcast={podcast}
         links={links}
         socials={socials}
+        themeMode={themeMode}
         textColorOnPrimary={textColorOnPrimary}
       />
       <Episodes

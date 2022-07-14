@@ -11,9 +11,10 @@ interface Props {
   links: Links;
   socials: Socials;
   textColorOnPrimary: string;
+  themeMode: string;
 }
 
-const PodcastInfo: React.FC<Props> = ({podcast, links, socials, textColorOnPrimary}) => {
+const PodcastInfo: React.FC<Props> = ({podcast, links, socials, textColorOnPrimary, themeMode}) => {
   const [isDescriptionCollapsed, setIsDescriptionCollapsed] = useState<boolean>(true)
 
   const podcastDescriptionClasses = `podcast-info__content__description ${isDescriptionCollapsed ? 'collapsed' : ''}`
@@ -45,7 +46,7 @@ const PodcastInfo: React.FC<Props> = ({podcast, links, socials, textColorOnPrima
           </button>
         </div>
       </div>
-      <PodcastAuthor podcast={podcast} socials={socials}></PodcastAuthor>
+      <PodcastAuthor podcast={podcast} socials={socials} themeMode={themeMode}></PodcastAuthor>
     </section>
   )
 }

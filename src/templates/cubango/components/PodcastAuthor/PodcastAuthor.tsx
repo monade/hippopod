@@ -8,14 +8,15 @@ import './PodcastAuthor.scss';
 interface Props {
   podcast: Podcast;
   socials: Socials;
+  themeMode: string;
 }
 
-const PodcastAuthor: React.FC<Props> = ({podcast, socials}) => {
+const PodcastAuthor: React.FC<Props> = ({podcast, socials, themeMode}) => {
 
   const renderImage = () => podcast.imageUrl ? <img src={podcast.imageUrl} alt={podcast.title}/> : null;
   const renderSocials = () => Object.getOwnPropertyNames(socials)?.length ?
     <PodcastAuthorField label='Social'>
-      <PodcastSocials socials={socials}/>
+      <PodcastSocials socials={socials} themeMode={themeMode}/>
     </PodcastAuthorField> :
     '';
 

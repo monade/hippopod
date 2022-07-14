@@ -24,7 +24,7 @@
         height: 326px;
         min-height: 326px;
         max-height: 326px;
-        background-color: var(--bg-color);
+        border-bottom: none !important;
 
         .horizontal-queue-padding {
           padding: 0 16px;
