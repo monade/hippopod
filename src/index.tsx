@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import config from "./data/arguments.json";
+// Change to arguments.dev.json while in developing
+import jsonConfig from "./data/arguments.json";
 import "./index.scss";
 import { PlayerProvider } from "./store/playerContext";
 import Bani from "./templates/bani/bani";
@@ -11,7 +12,10 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-switch((config as any).theme) {
+const localConfig = localStorage.getItem('config') as any;
+const config = localConfig ? JSON.parse(localConfig) : jsonConfig;
+
+switch(config.theme) {
     case 'bani':
         root.render(
             <Bani />

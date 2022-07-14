@@ -1,7 +1,6 @@
 @import '../../variables.scss';
 
 .episodes {
-  padding: 0 $horizontal-padding;
   background-color: var(--bg-color);
 
   &__layout-selector-outer {
@@ -12,5 +11,17 @@
 
   &__content {
     padding: 35px 0 60px;
+  }
+}
+
+@media screen and (min-width: $sm-width) {
+  .episodes {
+    padding: 0 $horizontal-padding;
+  }
+}
+
+@media screen and (max-width: $sm-width - 1) {
+  .episodes {
+    padding: 0 $horizontal-padding-sm;
   }
 }
