@@ -248,9 +248,17 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: var(--text-color);
-    opacity: 0.4;
+    background: #848484;
     margin-left: 8px;
+
+    * {
+      color: white;
+      fill: white;
+    }
+  }
+
+  .circle-command-button:hover {
+    opacity: 0.9;
   }
 
   .clickable,

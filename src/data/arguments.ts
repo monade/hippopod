@@ -17,7 +17,7 @@ const productionArguments = {
 };
 
 const developmentsArguments = {
-  color: '1a1a1a',
+  color: '2eb170',
   theme: 'cubango',
   themeMode: 'light',
   links: {

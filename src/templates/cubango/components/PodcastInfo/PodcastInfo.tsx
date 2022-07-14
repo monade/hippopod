@@ -33,7 +33,7 @@ const PodcastInfo: React.FC<Props> = ({podcast, links, socials, textColorOnPrima
     <section className='podcast-info'>
       <div className='podcast-info__header' style={{color: textColorOnPrimary}}>
         <div>{renderBadges()}</div>
-        <h1>{podcast.title}</h1>
+        <h1 title={podcast.title}>{podcast.title}</h1>
       </div>
       <div className='podcast-info__content'>
         <div className='podcast-info__content-inner'>
