@@ -19,7 +19,7 @@ const productionArguments = {
 const developmentsArguments = {
   color: '2eb170',
   theme: 'cubango',
-  themeMode: 'light',
+  themeMode: 'dark',
   links: {
     applePodcasts: 'https://podcasts.apple.com/it/podcast/il-podcast-di-alessandro-barbero-lezioni-e/id1501956064',
     googlePodcasts: 'https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuc3ByZWFrZXIuY29tL3Nob3cvNDI1NTIxMy9lcGlzb2Rlcy9mZWVk',

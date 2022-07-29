@@ -4,12 +4,14 @@ import { Episode } from "../../../../models/episode";
 import EpisodesGridItem from "../EpisodesGridItem/EpisodesGridItem";
 
 interface Props {
+  podcastImageUrl?: string;
   episodes: Episode[];
   onPlayEpisode: (episode: Episode) => void;
   onQueueEpisode: (episode: Episode) => void;
 }
 
 const EpisodesGrid: React.FC<Props> = ({
+  podcastImageUrl,
   episodes,
   onPlayEpisode,
   onQueueEpisode,

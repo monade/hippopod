@@ -99,7 +99,7 @@ export default function Queue({ isQueueVisible }: QueuePropsInterface) {
                   >
                     <img
                       alt="Episode"
-                      src="https://picsum.photos/68/68"
+                      src={episode.imageUrl}
                       className={`queue-episode-image ${
                         index === 0 ? "queue-episode-image-first" : ""
                       }`}

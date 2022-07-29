@@ -27,6 +27,7 @@ const Episodes: React.FC<Props> = ({
       case "grid":
         return (
           <EpisodesGrid
+            podcastImageUrl={podcast.imageUrl}
             episodes={podcast.episodes}
             onPlayEpisode={onPlayEpisode}
             onQueueEpisode={onQueueEpisode}
@@ -36,6 +37,7 @@ const Episodes: React.FC<Props> = ({
       default:
         return (
           <EpisodesList
+            podcastImageUrl={podcast.imageUrl}
             episodes={podcast.episodes}
             onPlayEpisode={onPlayEpisode}
             onQueueEpisode={onQueueEpisode}

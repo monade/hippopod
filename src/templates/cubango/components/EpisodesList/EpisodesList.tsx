@@ -4,12 +4,14 @@ import { Episode } from "../../../../models/episode";
 import EpisodesListItem from "../EpisodesListItem/EpisodesListItem";
 
 interface Props {
+  podcastImageUrl?: string;
   episodes: Episode[];
   onPlayEpisode: (episode: Episode) => void;
   onQueueEpisode: (episode: Episode) => void;
 }
 
 const EpisodesList: React.FC<Props> = ({
+  podcastImageUrl,
   episodes,
   onPlayEpisode,
   onQueueEpisode,
