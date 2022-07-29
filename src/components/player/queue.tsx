@@ -1,19 +1,28 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { Types } from "../../store/playerReducer";
 import Icon from "../utils/icon";
 import "./queue.scss";
-import {ARGUMENTS} from "../../data/arguments";
-import {colord} from "colord";
+import { ARGUMENTS } from "../../data/arguments";
+import { colord } from "colord";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 interface QueuePropsInterface {
   isQueueVisible: boolean;
+  setIsQueueVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Queue({ isQueueVisible }: QueuePropsInterface) {
+export default function Queue({
+  isQueueVisible,
+  setIsQueueVisible,
+}: QueuePropsInterface) {
   const { state, dispatch } = useContext(playerContext);
 
   const [queue, setQueue] = useState<EpisodeContextType[] | null>(null);
+
+  const queueRef = useRef(null);
+
+  useOnClickOutside(queueRef, () => setIsQueueVisible(false));
 
   const deleteIconStyles = {
     width: "16px",
@@ -41,7 +50,9 @@ export default function Queue({ isQueueVisible }: QueuePropsInterface) {
   };
 
   const background = useMemo(() => {
-    const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+    const bgColor = getComputedStyle(document.documentElement).getPropertyValue(
+      "--bg-color"
+    );
 
     if (ARGUMENTS.themeMode === "dark") {
       return colord(bgColor).lighten(0.05).toHex();
@@ -51,19 +62,23 @@ export default function Queue({ isQueueVisible }: QueuePropsInterface) {
 
   const border = useMemo(() => {
     if (ARGUMENTS.themeMode === "dark") {
-      return '1px solid #4B4F55';
+      return "1px solid #4B4F55";
     }
-    return '1px solid #CECECE'
+    return "1px solid #CECECE";
   }, []);
 
   return (
-    <div className="queue-container" >
+    <div className="queue-container">
       <div className="second-queue-container">
         {!isQueueVisible ? (
           ""
         ) : (
           <div className="queue-third-container">
-            <div className="queue" style={{ backgroundColor: background, border: border }}>
+            <div
+              ref={queueRef}
+              className="queue"
+              style={{ backgroundColor: background, border: border }}
+            >
               <div className="episode-height queue-header horizontal-queue-padding">
                 <p className="up-next-title">
                   <b>Up Next</b>

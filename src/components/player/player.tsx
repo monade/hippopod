@@ -28,7 +28,10 @@ export default function Player() {
             isQueueVisible={isQueueVisible}
             setIsQueueVisible={setIsQueueVisible}
           />
-          <Queue isQueueVisible={isQueueVisible} />
+          <Queue
+            isQueueVisible={isQueueVisible}
+            setIsQueueVisible={setIsQueueVisible}
+          />
           <div className="player-space" />
         </>
       )}
