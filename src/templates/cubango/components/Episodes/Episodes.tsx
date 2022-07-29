@@ -28,7 +28,6 @@ const Episodes: React.FC<Props> = ({
         return (
           <EpisodesGrid
             episodes={podcast.episodes}
-            imageUrl={podcast.imageUrl}
             onPlayEpisode={onPlayEpisode}
             onQueueEpisode={onQueueEpisode}
           />
