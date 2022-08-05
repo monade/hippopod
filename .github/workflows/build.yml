@@ -20,19 +20,36 @@ jobs:
             sudo apt-get update
             sudo apt-get install zip
             yarn install
-            for theme in cubango zambezi bani
+            for THEME in "cubango" "zambezi" "bani"
             do
-              sed -i "s/ARGUMENTS.theme/`$theme`" ./src/index.js
-              rm -rf build
+              sed -i -e "s/ARGUMENTS.theme/'$THEME'/g" ./src/index.tsx
+              rm -rf ./build
               yarn build
-              zip -r $theme.zip build
-              echo "zip $theme.zip"
+              zip -r $THEME.zip build
+              echo "zip $THEME.zip"
+              sed -i -e "s/'$THEME'/ARGUMENTS.theme/g" ./src/index.tsx
             done
 
-        - name: deploy
+        - name: deploy cubango
           uses: prewk/s3-cp-action@v2
           with:
             aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            source: './build.zip'
+            source: './cubango.zip'
+            dest: ${{ secrets.BUCKET_URL }}
+
+        - name: deploy zambezi
+          uses: prewk/s3-cp-action@v2
+          with:
+            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            source: './zambezi.zip'
+            dest: ${{ secrets.BUCKET_URL }}
+
+        - name: deploy bani
+          uses: prewk/s3-cp-action@v2
+          with:
+            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            source: './bani.zip'
             dest: ${{ secrets.BUCKET_URL }}
