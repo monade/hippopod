@@ -22,7 +22,7 @@ jobs:
             yarn install
             for theme in cubango zambezi bani
             do
-              sed -i "s/${ARGUMENTS.theme}/$theme" ./src/index.js
+              sed -i "s/ARGUMENTS.theme/`$theme`" ./src/index.js
               rm -rf build
               yarn build
               zip -r $theme.zip build
