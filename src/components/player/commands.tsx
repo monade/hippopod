@@ -206,6 +206,7 @@ export default function Commands({
               diameter={playerDiameter}
             />
             <img
+              alt="episode cover"
               className="play-image-container position-absolute"
               src={currentEpisode?.imageUrl}
             />

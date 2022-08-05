@@ -26,10 +26,6 @@
         max-height: 326px;
         border-bottom: none !important;
 
-        .horizontal-queue-padding {
-          padding: 0 16px;
-        }
-
         .queue-header {
           display: flex;
           justify-content: space-between;
@@ -84,19 +80,10 @@
         }
 
         .remove-episode-icon-container {
-          margin-left: -3px;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background-color: var(--text-color);
           opacity: 0;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;
         }
         .remove-episode-icon-container:hover {
-          opacity: 0.4;
+          opacity: 1;
         }
 
         .remove-episode-icon {
@@ -105,6 +92,51 @@
         .queue-episode-item:hover .remove-episode-icon,
         .queue-episode-item:hover .remove-episode-icon-container {
           opacity: 1;
+        }
+
+        .clickable,
+        .clickable p,
+        .clickable svg {
+          cursor: pointer;
+        }
+        .clickable:hover,
+        .clickable p:hover,
+        .clickable svg:hover {
+          transition: 0.2s ease-in-out;
+          color: var(--text-color);
+        }
+        .clickable:active,
+        .clickable p:active,
+        .clickable svg:active {
+          transition: 0.2s ease-in-out;
+          color: var(--primary-color);
+        }
+
+        .flex-center-center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .circle-command-button {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: #848484;
+          margin-left: 8px;
+
+          * {
+            color: white;
+            fill: white;
+          }
+        }
+
+        .circle-command-button:hover {
+          opacity: 0.9;
+        }
+
+        .horizontal-queue-padding {
+          padding: 0 16px;
         }
 
         .queue-episode-list {
