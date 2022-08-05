@@ -15,19 +15,16 @@ jobs:
     steps:
         - uses: actions/checkout@v3
 
-        - name: install dependencies
-          run: yarn install
-
         - name: build
           run: |
             sudo apt-get update
             sudo apt-get install zip
             yarn install
-            yarn build
             for theme in cubango zambezi bani
             do
               sed -i "s/${ARGUMENTS.theme}/$theme" ./src/index.js
-              rm -rf build   
+              rm -rf build
+              yarn build
               zip -r $theme.zip build
               echo "zip $theme.zip"
             done
