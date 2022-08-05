@@ -24,7 +24,13 @@ jobs:
             sudo apt-get install zip
             yarn install
             yarn build
-            zip -r build.zip build
+            for theme in cubango zambezi bani
+            do
+              sed -i "s/${ARGUMENTS.theme}/$theme" ./src/index.js
+              rm -rf build   
+              zip -r $theme.zip build
+              echo "zip $theme.zip"
+            done
 
         - name: deploy
           uses: prewk/s3-cp-action@v2
