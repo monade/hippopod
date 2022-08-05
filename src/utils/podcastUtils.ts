@@ -34,7 +34,7 @@ const parsePodcast = (feed: any): Omit<Podcast, "feedUrl"> => {
       url: findByPath(item, 'enclosure.@_url'),
       type: findByPath(item, 'enclosure.@_type'),
       sizeBytes: +findByPath(item, 'enclosure.@_length') || undefined,
-      imageUrl: findByPaths(item, ['image.@_href', 'itunes:image.@_href', 'googleplay:image.@_href']),
+      imageUrl: findByPaths(item, ['image.@_href', 'itunes:image.@_href', 'googleplay:image.@_href']) ?? findByPaths(channel, ['image.url', 'itunes:image.url', 'googleplay:image.url']),
       durationSeconds: +findByPaths(item, ['duration', 'itunes:duration', 'googleplay:duration']),
       publicationDate: parseDate(findByPaths(item, ['pubDate', 'itunes:pubDate', 'googleplay:pubDate', 'lastBuildDate'])),
     })),

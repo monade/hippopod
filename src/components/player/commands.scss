@@ -12,7 +12,7 @@
   .commands-container {
     display: flex;
     flex-direction: row;
-    max-width: 1080px;
+    padding: 0 139px;
     height: 100%;
     margin: 0 auto;
   }
@@ -76,100 +76,38 @@
   .time-track-section {
     min-width: 300px;
     width: 100%;
-    input[type="range"] {
-      width: 100%;
-      margin: 5px 0;
-      background-color: transparent;
-      -webkit-appearance: none;
-    }
-    input[type="range"]:focus {
-      outline: none;
-    }
-    input[type="range"]::-webkit-slider-runnable-track {
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 2.5px;
-      width: 100%;
-      height: 5px;
-      cursor: pointer;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      margin-top: -5px;
-      width: 15px;
-      height: 15px;
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 7.5px;
-      cursor: pointer;
-      -webkit-appearance: none;
-    }
-    input[type="range"]:focus::-webkit-slider-runnable-track {
-      background: var(--primary-color);
-    }
-    input[type="range"]::-moz-range-track {
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 2.5px;
-      width: 100%;
-      height: 5px;
-      cursor: pointer;
-    }
-    input[type="range"]::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 7.5px;
-      cursor: pointer;
-    }
-    input[type="range"]::-ms-track {
-      background: transparent;
-      border-color: transparent;
-      border-width: 5px 0;
-      color: transparent;
-      width: 100%;
-      height: 5px;
-      cursor: pointer;
-    }
-    input[type="range"]::-ms-fill-lower {
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 5px;
-    }
-    input[type="range"]::-ms-fill-upper {
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 5px;
-    }
-    input[type="range"]::-ms-thumb {
-      width: 15px;
-      height: 15px;
-      background: var(--primary-color);
-      border: 0;
-      border-radius: 7.5px;
-      cursor: pointer;
-      margin-top: 0px;
-      /*Needed to keep the Edge thumb centred*/
-    }
-    input[type="range"]:focus::-ms-fill-lower {
-      background: var(--primary-color);
-    }
-    input[type="range"]:focus::-ms-fill-upper {
-      background: var(--primary-color);
-    }
-    /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
-    how to remove the virtical space around the range input in IE*/
-    @supports (-ms-ime-align: auto) {
-      /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
-      input[type="range"] {
-        margin: 0;
-        /*Edge starts the margin from the thumb, not the track as other browsers do*/
-      }
-    }
   }
 
   .time-track-slider {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .thumb:focus-visible {
+      outline: none;
+    }
+
+    .thumb {
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      height: 15px;
+      width: 15px;
+    }
+
+    .track {
+      height: 5px;
+    }
+
+    .track-0 {
+      background-color: var(--primary-color);
+      border-radius: 5px 0px 0px 5px;
+    }
+
+    .track-1 {
+      background-color: gray;
+      border-radius: 0px 5px 5px 0px;
+    }
   }
 
   .time-track-timer {
@@ -237,6 +175,36 @@
 
   .mute-unmute-icon {
     margin: 0 8px 0 16px;
+  }
+
+  .volume-slider {
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .thumb:focus-visible {
+      outline: none;
+    }
+
+    .thumb {
+      height: 0px;
+      width: 0px;
+    }
+
+    .track {
+      height: 5px;
+    }
+
+    .track-0 {
+      background-color: var(--primary-color);
+      border-radius: 5px 0px 0px 5px;
+    }
+
+    .track-1 {
+      background-color: gray;
+      border-radius: 0px 5px 5px 0px;
+    }
   }
 
   .download-icon,

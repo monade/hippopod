@@ -1,11 +1,12 @@
-import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
+import { colord } from "colord";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import ReactSlider from "react-slider";
+import { ARGUMENTS } from "../../data/arguments";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
 import Icon from "../utils/icon";
 import "./commands.scss";
-import { ARGUMENTS } from "../../data/arguments";
-import {colord} from "colord";
 
 interface CommandsPropsInterface {
   isQueueVisible: boolean;
@@ -101,15 +102,15 @@ export default function Commands({
     audioPlayer.setVolume(volume / 100);
   }, [volume]);
 
-  useEffect(() => {
-    (
-      timeTrackSlider.current as any
-    ).style.background = `background: linear-gradient(
-      90deg,
-      var(--primary-color) ${currentTime / audioPlayer.duration}%,
-      rgba(255, 255, 255, 0.4) ${currentTime / audioPlayer.duration}%
-    )`;
-  }, [currentTime]);
+  // useEffect(() => {
+  //   (
+  //     timeTrackSlider.current as any
+  //   ).style.background = `background: linear-gradient(
+  //     90deg,
+  //     var(--primary-color) ${currentTime / audioPlayer.duration}%,
+  //     rgba(255, 255, 255, 0.4) ${currentTime / audioPlayer.duration}%
+  //   )`;
+  // }, [currentTime]);
 
   const initAudioPlayer = () => {
     if (!currentEpisode) {
@@ -153,7 +154,9 @@ export default function Commands({
   };
 
   const background = useMemo(() => {
-    const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+    const bgColor = getComputedStyle(document.documentElement).getPropertyValue(
+      "--bg-color"
+    );
 
     if (ARGUMENTS.themeMode === "dark") {
       return colord(bgColor).lighten(0.05).toHex();
@@ -163,13 +166,16 @@ export default function Commands({
 
   const border = useMemo(() => {
     if (ARGUMENTS.themeMode === "dark") {
-      return '1px solid #4B4F55';
+      return "1px solid #4B4F55";
     }
-    return '1px solid #CECECE'
+    return "1px solid #CECECE";
   }, []);
 
   return (
-    <div className="commands commands-background" style={{ backgroundColor: background, borderTop: border }}>
+    <div
+      className="commands commands-background"
+      style={{ backgroundColor: background, borderTop: border }}
+    >
       <div className="commands-container flex-row justify-content-between align-items-center">
         <div className="flex-row flex-center-center">
           <div
@@ -233,17 +239,21 @@ export default function Commands({
           <p className="text-no-wrap time-track-timer left-timer">
             {getTimeStringFromSeconds(audioPlayer.currentTime || null)}
           </p>
-          <input
+
+          <ReactSlider
             className="time-track-slider"
             ref={timeTrackSlider}
-            type="range"
-            min="0"
+            onChange={(event) => {
+              setCurrentTime(event);
+              audioPlayer.audio.currentTime = event;
+            }}
+            min={0}
             max={audioPlayer.duration}
             value={currentTime}
-            onChange={(event) => {
-              setCurrentTime(parseInt(event.target.value));
-              audioPlayer.audio.currentTime = parseInt(event.target.value);
-            }}
+            orientation="horizontal"
+            trackClassName="track"
+            thumbClassName="thumb"
+            thumbActiveClassName="thumb-active"
           />
           <p className="text-no-wrap time-track-timer right-timer">
             {audioPlayer.duration && audioPlayer.currentTime ? "-" : ""}
@@ -263,12 +273,16 @@ export default function Commands({
             }
             svgStyles={muteUnmuteSvgStyles}
           />
-          <input
-            type="range"
-            min="0"
-            max="100"
+          <ReactSlider
+            className="volume-slider"
+            min={0}
+            max={100}
             value={isMuted ? 0 : volume}
-            onChange={(event) => setVolume(parseInt(event.target.value))}
+            onChange={(event) => setVolume(event)}
+            orientation="horizontal"
+            trackClassName="track"
+            thumbClassName="thumb"
+            thumbActiveClassName="thumb-active"
           />
         </div>
         <div className="flex-row">
