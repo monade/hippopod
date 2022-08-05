@@ -1,7 +1,7 @@
 import { colord } from "colord";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ReactSlider from "react-slider";
-import { ArgumentsDevelopment } from "../../data/arguments";
+import ARGUMENTS from "../../data/arguments";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
@@ -158,14 +158,14 @@ export default function Commands({
       "--bg-color"
     );
 
-    if (ArgumentsDevelopment.themeMode === "dark") {
+    if (ARGUMENTS.themeMode === "dark") {
       return colord(bgColor).lighten(0.05).toHex();
     }
     return bgColor;
   }, []);
 
   const border = useMemo(() => {
-    if (ArgumentsDevelopment.themeMode === "dark") {
+    if (ARGUMENTS.themeMode === "dark") {
       return "1px solid #4B4F55";
     }
     return "1px solid #CECECE";
@@ -202,7 +202,7 @@ export default function Commands({
             <div className="play-outer-circle position-absolute"></div>
             <CircularProgressBar
               percentage={currentTime / audioPlayer.duration}
-              color={`#${(ArgumentsDevelopment as any).color}`}
+              color={`#${(ARGUMENTS as any).color}`}
               diameter={playerDiameter}
             />
             <img

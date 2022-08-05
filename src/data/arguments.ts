@@ -1,5 +1,3 @@
-import exp from "constants";
-
 const ARGUMENTS = {
   color: '2eb170',
   theme: 'cubango',
