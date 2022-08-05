@@ -1,6 +1,6 @@
 import { colord } from "colord";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-// import ReactSlider from "react-slider";
+import ReactSlider from "react-slider";
 import { ARGUMENTS } from "../../data/arguments";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
@@ -240,21 +240,21 @@ export default function Commands({
             {getTimeStringFromSeconds(audioPlayer.currentTime || null)}
           </p>
 
-          {/*<ReactSlider*/}
-          {/*  className="time-track-slider"*/}
-          {/*  ref={timeTrackSlider}*/}
-          {/*  onChange={(event) => {*/}
-          {/*    setCurrentTime(event);*/}
-          {/*    audioPlayer.audio.currentTime = event;*/}
-          {/*  }}*/}
-          {/*  min={0}*/}
-          {/*  max={audioPlayer.duration}*/}
-          {/*  value={currentTime}*/}
-          {/*  orientation="horizontal"*/}
-          {/*  trackClassName="track"*/}
-          {/*  thumbClassName="thumb"*/}
-          {/*  thumbActiveClassName="thumb-active"*/}
-          {/*/>*/}
+          <ReactSlider
+            className="time-track-slider"
+            ref={timeTrackSlider}
+            onChange={(event) => {
+              setCurrentTime(event);
+              audioPlayer.audio.currentTime = event;
+            }}
+            min={0}
+            max={audioPlayer.duration}
+            value={currentTime}
+            orientation="horizontal"
+            trackClassName="track"
+            thumbClassName="thumb"
+            thumbActiveClassName="thumb-active"
+          />
           <p className="text-no-wrap time-track-timer right-timer">
             {audioPlayer.duration && audioPlayer.currentTime ? "-" : ""}
             {getTimeStringFromSeconds(
@@ -273,17 +273,17 @@ export default function Commands({
             }
             svgStyles={muteUnmuteSvgStyles}
           />
-          {/*<ReactSlider*/}
-          {/*  className="volume-slider"*/}
-          {/*  min={0}*/}
-          {/*  max={100}*/}
-          {/*  value={isMuted ? 0 : volume}*/}
-          {/*  onChange={(event) => setVolume(event)}*/}
-          {/*  orientation="horizontal"*/}
-          {/*  trackClassName="track"*/}
-          {/*  thumbClassName="thumb"*/}
-          {/*  thumbActiveClassName="thumb-active"*/}
-          {/*/>*/}
+          <ReactSlider
+            className="volume-slider"
+            min={0}
+            max={100}
+            value={isMuted ? 0 : volume}
+            onChange={(event) => setVolume(event)}
+            orientation="horizontal"
+            trackClassName="track"
+            thumbClassName="thumb"
+            thumbActiveClassName="thumb-active"
+          />
         </div>
         <div className="flex-row">
           <div
