@@ -1,5 +1,6 @@
 const productionArguments = {
   color: 'PRIMARY_COLOR_NAME',
+  theme: 'THEME',
   themeMode: 'THEME_MODE',
   links: {
     applePodcasts: 'APPLE_PODCASTS_LINK',
