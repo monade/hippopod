@@ -19,11 +19,11 @@ jobs:
           run: |
             sudo apt-get update
             sudo apt-get install zip
-            yarn install
             for THEME in "cubango" "zambezi" "bani"
             do
               sed -i -e "s/ARGUMENTS.theme/'$THEME'/g" ./src/index.tsx
               rm -rf ./build
+              yarn install
               yarn build
               zip -r $THEME.zip build
               echo "zip $THEME.zip"
