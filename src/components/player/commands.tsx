@@ -243,7 +243,7 @@ export default function Commands({
           <ReactSlider
             className="time-track-slider"
             ref={timeTrackSlider}
-            onChange={(event) => {
+            onChange={(event: any) => {
               setCurrentTime(event);
               audioPlayer.audio.currentTime = event;
             }}
