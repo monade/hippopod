@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { PlayerProvider } from "./store/playerContext";
+
 import ARGUMENTS from "./data/arguments";
 const Theme = React.lazy(() => import(`./templates/${ARGUMENTS.theme}/${ARGUMENTS.theme}`));
 

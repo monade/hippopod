@@ -3,7 +3,7 @@ import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { Types } from "../../store/playerReducer";
 import Icon from "../utils/icon";
 import "./queue.scss";
-import { ARGUMENTS } from "../../data/arguments";
+import { ArgumentsDevelopment } from "../../data/arguments";
 import { colord } from "colord";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
@@ -54,14 +54,14 @@ export default function Queue({
       "--bg-color"
     );
 
-    if (ARGUMENTS.themeMode === "dark") {
+    if (ArgumentsDevelopment.themeMode === "dark") {
       return colord(bgColor).lighten(0.05).toHex();
     }
     return bgColor;
   }, []);
 
   const border = useMemo(() => {
-    if (ARGUMENTS.themeMode === "dark") {
+    if (ArgumentsDevelopment.themeMode === "dark") {
       return "1px solid #4B4F55";
     }
     return "1px solid #CECECE";
