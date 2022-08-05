@@ -15,6 +15,10 @@ html {
   color: var(--text-color);
 }
 
+a {
+  color: var(--primary-color);
+}
+
 .loading {
   width: 100vw;
   height: 100vh;

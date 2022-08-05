@@ -8,6 +8,15 @@
   &__content {
     flex: 1;
     min-width: 0;
+    cursor: pointer;
+    font-size: var(--episode-list-item-font-size);
+
+    p {
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     h6 {
       text-transform: capitalize;
@@ -22,10 +31,13 @@
 }
 
 @media screen and (min-width: $xs-width) {
+  :root {
+    --episode-list-item-font-size: 14px;
+  }
   .episodes-list-item {
+
     &__content {
       margin-left: 40px;
-      font-size: 14px;
 
       h6 {
         font-size: 28px;
@@ -36,10 +48,12 @@
 }
 
 @media screen and (max-width: $xs-width - 1) {
+  :root {
+    --episode-list-item-font-size: 10px;
+  }
   .episodes-list-item {
     &__content {
       margin-left: 20px;
-      font-size: 10px;
 
       h6 {
         font-size: 20px;

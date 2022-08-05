@@ -5,9 +5,10 @@ import { getDateString } from "../../../../utils/dateUtils";
 
 interface Props {
   episode: Episode;
+  onClick?: () => void;
 }
 
-const EpisodeInfo: React.FC<Props> = ({ episode }) => {
+const EpisodeInfo: React.FC<Props> = ({ episode, onClick }) => {
   const renderDate = (date?: Date) =>
     date ? <span>{getDateString(date)}</span> : "";
   const formatDuration = (durationSeconds: number) => {
@@ -29,11 +30,14 @@ const EpisodeInfo: React.FC<Props> = ({ episode }) => {
       ""
     );
 
+  const clickHandler = onClick ? onClick : () => {};
+
   return (
-    <span className="episode-info">
+    <span className="episode-info" onClick={clickHandler}>
       {renderDate(episode.publicationDate)}
       {renderDuration(episode.durationSeconds)}
       {renderSize(episode.sizeBytes)}
+      <strong style={{cursor:'pointer'}}>More Details</strong>
     </span>
   );
 };

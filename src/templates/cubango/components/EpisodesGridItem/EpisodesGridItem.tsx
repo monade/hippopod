@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './EpisodesGridItem.scss';
 import {Episode} from "../../../../models/episode";
 import EpisodeControls from "../EpisodeControls/EpisodeControls";
 import EpisodeInfo from "../EpisodeInfo/EpisodeInfo";
-
+import EpisodeInfoModal from "../../../../components/EpisodeInfoModal/EpisodeInfoModal";
 interface Props {
   episode: Episode;
   imageUrl?: string;
@@ -12,6 +12,18 @@ interface Props {
 }
 
 const EpisodesGridItem: React.FC<Props> = ({ episode, imageUrl, onPlayEpisode, onQueueEpisode }) => {
+
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    if (!modalIsOpen) {
+      setIsOpen(true);
+    }
+  }
+  const closeModal = () => {
+    setIsOpen(false);
+  }
 
   return (
     <div className='episodes-grid-item'>
@@ -23,9 +35,14 @@ const EpisodesGridItem: React.FC<Props> = ({ episode, imageUrl, onPlayEpisode, o
         onQueueEpisode={() => onQueueEpisode(episode)}
       />
       <div className='episodes-grid-item__content'>
-        <EpisodeInfo episode={episode} />
-        <h6>{episode.title}</h6>
+        <EpisodeInfo onClick={openModal} episode={episode} />
+        <h6 onClick={openModal} >{episode.title}</h6>
       </div>
+      <EpisodeInfoModal
+        episode={episode}
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+      />
     </div>
   )
 }

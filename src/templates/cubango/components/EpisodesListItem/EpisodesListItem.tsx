@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './EpisodesListItem.scss';
 import {Episode} from "../../../../models/episode";
 import EpisodeControls from "../EpisodeControls/EpisodeControls";
 import EpisodeInfo from "../EpisodeInfo/EpisodeInfo";
+import EpisodeInfoModal from "../../../../components/EpisodeInfoModal/EpisodeInfoModal";
 
 interface Props {
   episode: Episode;
@@ -32,8 +33,19 @@ const EpisodesListItem: React.FC<Props> = ({ episode, imageUrl, onPlayEpisode, o
     <span>{Math.round((sizeBytes / 1000000) * 100) / 100} MB</span> :
     '';
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    if (!modalIsOpen) {
+      setIsOpen(true);
+    }
+  }
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   return (
-    <div className='episodes-list-item'>
+    <div className='episodes-list-item' onClick={openModal}>
       <EpisodeControls
         fill={'height'}
         imageUrl={imageUrl}
@@ -43,8 +55,14 @@ const EpisodesListItem: React.FC<Props> = ({ episode, imageUrl, onPlayEpisode, o
       />
       <div className='episodes-list-item__content'>
         <h6>{episode.title}</h6>
+        {episode.description && <p dangerouslySetInnerHTML={{ __html: episode.description }} />}
         <EpisodeInfo episode={episode} />
       </div>
+      <EpisodeInfoModal
+        episode={episode}
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+      />
     </div>
   )
 }
