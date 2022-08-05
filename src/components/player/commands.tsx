@@ -278,7 +278,7 @@ export default function Commands({
             min={0}
             max={100}
             value={isMuted ? 0 : volume}
-            onChange={(event) => setVolume(event)}
+            onChange={(event: any) => setVolume(event)}
             orientation="horizontal"
             trackClassName="track"
             thumbClassName="thumb"
