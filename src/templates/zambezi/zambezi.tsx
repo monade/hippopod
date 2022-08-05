@@ -1,5 +1,5 @@
-const Cubango = () => {
+const Zambezi = () => {
     return <span>zambezi</span>
 }
 
-export default Cubango;
+export default Zambezi;
