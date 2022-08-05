@@ -42,6 +42,8 @@ const EpisodesGridItem: React.FC<Props> = ({ episode, imageUrl, onPlayEpisode, o
         episode={episode}
         isOpen={modalIsOpen}
         onClose={closeModal}
+        onPlayEpisode={() => onPlayEpisode(episode)}
+        onQueueEpisode={() => onQueueEpisode(episode)}
       />
     </div>
   )

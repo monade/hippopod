@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { EpisodesLayout } from "../../../../models/episodes-layout";
 import EpisodesLayoutSelector from "../EpisodesLayoutSelector/EpisodesLayoutSelector";
 import "./Episodes.scss";
@@ -22,15 +22,18 @@ const Episodes: React.FC<Props> = ({
   onPlayEpisode,
   onQueueEpisode,
 }) => {
-  const renderEpisodes = () => {
+  const [filter, setFilter] = useState<string>("");
+
+  const renderEpisodes = (episodes: Episode[]) => {
     switch (layout) {
       case "grid":
         return (
           <EpisodesGrid
             podcastImageUrl={podcast.imageUrl}
-            episodes={podcast.episodes}
+            episodes={episodes}
             onPlayEpisode={onPlayEpisode}
             onQueueEpisode={onQueueEpisode}
+            filter={filter}
           />
         );
       case "list":
@@ -38,9 +41,10 @@ const Episodes: React.FC<Props> = ({
         return (
           <EpisodesList
             podcastImageUrl={podcast.imageUrl}
-            episodes={podcast.episodes}
+            episodes={episodes}
             onPlayEpisode={onPlayEpisode}
             onQueueEpisode={onQueueEpisode}
+            filter={filter}
           />
         );
     }
@@ -49,12 +53,20 @@ const Episodes: React.FC<Props> = ({
   return (
     <div className="episodes">
       <div className="episodes__layout-selector-outer">
+        <input
+          name="filter"
+          type="text"
+          placeholder="Search episodes..."
+          onChange={(e) => setFilter(e.target.value)}
+        />
         <EpisodesLayoutSelector
           layout={layout}
           onLayoutSelect={onLayoutSelect}
         />
       </div>
-      <div className="episodes__content">{renderEpisodes()}</div>
+      <div className="episodes__content">
+        {renderEpisodes(podcast.episodes)}
+      </div>
     </div>
   );
 };
