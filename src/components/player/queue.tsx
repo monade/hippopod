@@ -25,8 +25,8 @@ export default function Queue({
   useOnClickOutside(queueRef, () => setIsQueueVisible(false));
 
   const deleteIconStyles = {
-    width: "16px",
-    height: "16px",
+    width: "12px",
+    height: "12px",
   };
 
   useEffect(() => {
@@ -121,14 +121,14 @@ export default function Queue({
                     />
                     <div className="queue-episode-title">{episode.title}</div>
                     <div
-                      className="remove-episode-icon-container"
+                      className="remove-episode-icon-container clickable circle-command-button flex-center-center"
                       onClick={() => {
                         removeTrack(episode.id);
                       }}
                     >
                       <Icon
-                        className="remove-episode-icon"
-                        iconRelativePath="player/back10"
+                        className="remove-episode-icon flex-center-center"
+                        iconRelativePath="player/x"
                         svgStyles={deleteIconStyles}
                       />
                     </div>
