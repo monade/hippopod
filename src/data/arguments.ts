@@ -1,6 +1,5 @@
 const productionArguments = {
   color: 'PRIMARY_COLOR_NAME',
-  theme: 'THEME_NAME',
   themeMode: 'THEME_MODE',
   links: {
     applePodcasts: 'APPLE_PODCASTS_LINK',
@@ -16,6 +15,7 @@ const productionArguments = {
   },
 };
 
+// TODO: find a better way to do this
 const developmentsArguments = {
   color: '2eb170',
   theme: 'cubango',
