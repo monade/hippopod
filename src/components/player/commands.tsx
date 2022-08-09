@@ -47,6 +47,9 @@ export default function Commands({
   );
 
   const [currentTime, setCurrentTime] = useState(0);
+  audioPlayer.setOnTimeUpdate(() => {
+    setCurrentTime(audioPlayer.currentTime);
+  });
 
   const timeTrackSlider = useRef(null);
 
@@ -64,10 +67,6 @@ export default function Commands({
     width: "16px",
     height: "16px",
   };
-
-  useEffect(() => {
-    setCurrentTime(audioPlayer.audio.currentTime);
-  }, [audioPlayer.audio.currentTime]);
 
   useEffect(() => {
     if (state.queue.length === 0) {
@@ -101,16 +100,6 @@ export default function Commands({
     setIsMuted(false);
     audioPlayer.setVolume(volume / 100);
   }, [volume]);
-
-  // useEffect(() => {
-  //   (
-  //     timeTrackSlider.current as any
-  //   ).style.background = `background: linear-gradient(
-  //     90deg,
-  //     var(--primary-color) ${currentTime / audioPlayer.duration}%,
-  //     rgba(255, 255, 255, 0.4) ${currentTime / audioPlayer.duration}%
-  //   )`;
-  // }, [currentTime]);
 
   const initAudioPlayer = () => {
     if (!currentEpisode) {
@@ -238,14 +227,13 @@ export default function Commands({
         </div>
         <div className="flex-row time-track-section">
           <p className="text-no-wrap time-track-timer left-timer">
-            {getTimeStringFromSeconds(audioPlayer.currentTime || null)}
+            {getTimeStringFromSeconds(currentTime)}
           </p>
 
           <ReactSlider
             className="time-track-slider"
             ref={timeTrackSlider}
             onChange={(event: any) => {
-              setCurrentTime(event);
               audioPlayer.audio.currentTime = event;
             }}
             min={0}
@@ -257,10 +245,10 @@ export default function Commands({
             thumbActiveClassName="thumb-active"
           />
           <p className="text-no-wrap time-track-timer right-timer">
-            {audioPlayer.duration && audioPlayer.currentTime ? "-" : ""}
+            {audioPlayer.duration && currentTime ? "-" : ""}
             {getTimeStringFromSeconds(
-              audioPlayer.duration && audioPlayer.currentTime
-                ? audioPlayer.duration - audioPlayer.currentTime
+              audioPlayer.duration && currentTime
+                ? audioPlayer.duration - currentTime
                 : null
             )}
           </p>
