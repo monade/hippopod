@@ -3,7 +3,7 @@ import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { Types } from "../../store/playerReducer";
 import Icon from "../utils/icon";
 import "./queue.scss";
-import { ARGUMENTS } from "../../data/arguments";
+import ARGUMENTS from "../../data/arguments";
 import { colord } from "colord";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 

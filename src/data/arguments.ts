@@ -1,23 +1,4 @@
-const productionArguments = {
-  color: 'PRIMARY_COLOR_NAME',
-  theme: 'THEME',
-  themeMode: 'THEME_MODE',
-  links: {
-    applePodcasts: 'APPLE_PODCASTS_LINK',
-    googlePodcasts: 'GOOGLE_PODCASTS_LINK',
-    pocketCasts: 'POCKET_CASTS_LINK',
-    spotify: 'SPOTIFY_LINK',
-    rssFeed: 'RSS_FEED_LINK',
-  },
-  socials: {
-    facebook: 'FACEBOOK_LINK',
-    instagram: 'INSTAGRAM_LINK',
-    twitter: 'TWITTER_LINK',
-  },
-};
-
-// TODO: find a better way to do this
-const developmentsArguments = {
+const ARGUMENTS = {
   color: '2eb170',
   theme: 'cubango',
   themeMode: 'dark',
@@ -35,4 +16,4 @@ const developmentsArguments = {
   },
 };
 
-export const ARGUMENTS = process.env.NODE_ENV === 'production' ? productionArguments : developmentsArguments;
+export default ARGUMENTS;

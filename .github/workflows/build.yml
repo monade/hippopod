@@ -19,6 +19,7 @@ jobs:
           run: |
             sudo apt-get update
             sudo apt-get install zip
+            cp ./src/data/arguments.production.ts ./src/data/arguments.ts
             for THEME in "cubango" "zambezi" "bani"
             do
               sed -i -e "s/ARGUMENTS.theme/'$THEME'/g" ./src/index.tsx

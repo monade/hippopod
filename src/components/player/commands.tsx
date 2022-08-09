@@ -1,7 +1,7 @@
 import { colord } from "colord";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ReactSlider from "react-slider";
-import { ARGUMENTS } from "../../data/arguments";
+import ARGUMENTS from "../../data/arguments";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
