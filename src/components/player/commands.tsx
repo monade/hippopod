@@ -234,7 +234,9 @@ export default function Commands({
             className="time-track-slider"
             ref={timeTrackSlider}
             onChange={(event: any) => {
+              audioPlayer.pause();
               audioPlayer.audio.currentTime = event;
+              audioPlayer.play();
             }}
             min={0}
             max={audioPlayer.duration}
