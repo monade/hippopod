@@ -4,7 +4,8 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
 import inquirer from 'inquirer';
-import {createSpinner} from "nanospinner";
+import cliSpinners from "cli-spinners";
+import ora from "ora";
 import {isHexadecimal} from 'is-hexadecimal'
 import camelcase from "camelcase";
 import {execSync} from "child_process";
@@ -34,7 +35,6 @@ const theme = await askList('Choose a theme', ['Cubango', 'Zambezi', 'Bani']);
 const themeMode = await askList('Choose a theme mode', ['Light', 'Dark']);
 const color = await chooseColor();
 const choosedSocials = await askCheckbox('Choose socials', ['Apple Podcasts', 'Google Podcasts', 'Pocket Casts', 'Spotify', 'Twitter', 'Facebook', 'Instagram']);
-
 const {
   applePodcasts,
   googlePodcasts,
@@ -100,9 +100,6 @@ async function askList(message, choices) {
     message,
     choices,
   });
-
-  // await spinner();
-
   return answer.response;
 }
 
@@ -113,9 +110,6 @@ async function ask(message, validation) {
     message,
     validate: validation,
   });
-
-  // await spinner();
-
   return answer.response;
 }
 
@@ -126,18 +120,8 @@ async function askCheckbox(message, choices) {
     message,
     choices,
   });
-
-  // await spinner();
-
   return answer.response;
 }
-
-// async function spinner(ms = 500) {
-//   const spinner = createSpinner();
-//   spinner.start();
-//   await sleep(ms);
-//   spinner.success();
-// }
 
 function validUrl(url, domain) {
   let urlObj;
@@ -191,23 +175,25 @@ async function replaceParams() {
     instagram
   };
   await builder.generate('build/static/js/*.js*', 'RSS_FEED_LINK', params);
-  // await builder.generate('build/static/js/main.*.chunk.js', params);
 }
 
 function saveFolder() {
   const name = folderName ? folderName : 'hippopod';
-  // execSync(`cp -R ./build ${invokationFolder}/${name}`);
   shell.cp('-R', './build', `${invokationFolder}/${name}`)
   shell.rm('-rf', './build');
-  // execSync('rm -rf ./build');
 }
 
 async function chooseColor() {
+  const spinner = ora({text: 'Extracting colors from podcast cover', spinner: cliSpinners.arrow3, color: "magenta"}).start()
+
   const imageUrl = await getImageUrlFromRssFeed(rssFeed);
   const palette = new Palette();
   const colors = await palette.extract(imageUrl);
-  const mappedColors = colors.map(color => chalk.hex(color).bold(color));
+  const mappedColors = colors.map(color => chalk.hex(color).inverse(color));
   mappedColors.push('Custom');
+
+  spinner.stop();
+  spinner.clear();
 
   let chosenColor = await askList('Choose color', mappedColors);
 
