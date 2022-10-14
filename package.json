@@ -2,9 +2,6 @@
   "name": "hippopod",
   "version": "0.1.16",
   "private": false,
-  "engines": {
-    "node": "^16"
-  },
   "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

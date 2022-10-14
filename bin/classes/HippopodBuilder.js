@@ -1,9 +1,39 @@
 import glob from 'glob';
 import { escape } from 'html-escaper'
 import { readFile, writeFile } from 'node:fs/promises';
+import chalk from "chalk";
+import shell from "shelljs";
+import {execSync} from "child_process";
 
-export default class Builder {
-  generate(filesToEdit, stringToSearch, params) {
+export default class HippopodBuilder {
+  async build(params, theme) {
+    this.buildReactApp(theme);
+    await this.findAndReplaceParams('build/static/js/*.js*', 'RSS_FEED_LINK', params);
+  }
+
+  buildReactApp(theme) {
+    try {
+      console.log(chalk.green('Building...'));
+      shell.cp('./src/data/arguments.ts', './src/data/_arguments.ts');
+      shell.cp('./src/data/arguments.production.ts', './src/data/arguments.ts');
+      // shell.sed(['-i','-e'], 'ARGUMENTS.theme', `'${theme.toLowerCase()}'`, './src/index.tsx')
+      execSync(`sed -i -e "s/ARGUMENTS.theme/'${theme.toLowerCase()}'/g" ./src/index.tsx`);
+      shell.rm('-rf', './build');
+      shell.exec('npm install --loglevel=error > /dev/null');
+      shell.exec('npm run build > /dev/null');
+      // shell.sed(['-i', '-e'], `'${theme.toLowerCase()}'`, 'ARGUMENTS.theme', './src/index.tsx')
+      execSync(`sed -i -e "s/'${theme.toLowerCase()}'/ARGUMENTS.theme/g" ./src/index.tsx`);
+      shell.cp('./src/data/arguments.ts', './src/data/arguments.production.ts');
+      shell.cp('./src/data/_arguments.ts', './src/data/arguments.ts');
+      shell.rm('-rf', './src/data/_arguments.ts');
+      shell.rm('-rf', './package-lock.json');
+      shell.rm('-rf', './src/index.tsx-e');
+    } catch(e) {
+      process.exit(1);
+    }
+  }
+
+  findAndReplaceParams(filesToEdit, stringToSearch, params) {
     return new Promise((resolve, reject) => {
       glob(filesToEdit, {}, async (err, files) => {
         for (let i = 0; i < files.length; i++)  {
@@ -17,7 +47,7 @@ export default class Builder {
           }
 
           if (data && data.includes(stringToSearch)) {
-            file = Builder.replaceParams(data, params);
+            file = this.replaceParams(data, params);
 
             try {
               await writeFile(files[i], file);
@@ -31,7 +61,7 @@ export default class Builder {
     });
   }
 
-  static replaceParams(data, params) {
+  replaceParams(data, params) {
     const {
       color,
       themeMode,
