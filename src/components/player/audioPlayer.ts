@@ -64,6 +64,7 @@ export class AudioPlayer {
       return;
       // throw new Error("Player not ready");
     }
+
     this.isLoading = true;
     await this.audio.play();
     this.isLoading = false;

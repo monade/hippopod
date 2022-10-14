@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Player } from "../../components";
+import { Episode } from "../../models/episode";
+import { EpisodesLayout } from "../../models/episodes-layout";
+import { Links } from "../../models/links";
 import { Podcast } from "../../models/podcast";
+import { Socials } from "../../models/socials";
+import { playerContext } from "../../store/playerContext";
+import { Types } from "../../store/playerReducer";
 import { getPodcast } from "../../utils/podcastUtils";
-import "./cubango.scss";
+import { ReactComponent as Spinner } from "./assets/circle-notch-solid.svg";
+import Episodes from "./components/Episodes/Episodes";
+import Footer from "./components/Footer/Footer";
 import PodcastInfo from "./components/PodcastInfo/PodcastInfo";
 import StickyHeader from "./components/StickyHeader/StickyHeader";
-import Episodes from "./components/Episodes/Episodes";
-import { Links } from "../../models/links";
-import { Socials } from "../../models/socials";
-import { EpisodesLayout } from "../../models/episodes-layout";
-import { Episode } from "../../models/episode";
-import Footer from "./components/Footer/Footer";
-import { Types } from "../../store/playerReducer";
-import { playerContext } from "../../store/playerContext";
-import { Player } from "../../components";
-import { ReactComponent as Spinner } from "./assets/circle-notch-solid.svg";
+import "./cubango.scss";
 
 interface Props {
   color: string;
@@ -31,11 +31,6 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
   const [episodesLayout, setEpisodesLayout] = useState<EpisodesLayout>("list");
 
   const { state, dispatch } = useContext(playerContext);
-
-  const [playWhenPlayerIsReady, setPlayWhenPlayerIsReady] = useState({
-    id: "",
-    play: false,
-  });
 
   const getEpisodeSizeInMB = (episode: Episode) => {
     return (Math.round(((episode.sizeBytes || 0) / 1000000) * 100) /
@@ -111,7 +106,11 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
         imageUrl: (episode.imageUrl || podcast?.imageUrl) as string,
       },
     });
-    setPlayWhenPlayerIsReady({ id: episodeId, play: true });
+
+    //TODO:
+    setTimeout(() => {
+      state.audioPlayer.play();
+    }, 100);
   };
 
   const getNextTrack = () => {
@@ -142,32 +141,12 @@ const Cubango: React.FC<Props> = ({ color, themeMode, links, socials }) => {
         id: state.queue[0].id,
       },
     });
-    setPlayWhenPlayerIsReady({
-      id: nextTrackId || "",
-      play: Boolean(nextTrackId),
-    });
-  }, [state.audioPlayer.goToNextEpisode]);
 
-  useEffect(() => {
-    if (
-      playWhenPlayerIsReady.play &&
-      state.audioPlayer.isReady &&
-      state.audioPlayer.episode?.id === playWhenPlayerIsReady.id
-    ) {
+    //TODO:
+    setTimeout(() => {
       state.audioPlayer.play();
-      setPlayWhenPlayerIsReady({
-        id: "",
-        play: false,
-      });
-    }
-  }, [
-    playWhenPlayerIsReady,
-    playWhenPlayerIsReady.id,
-    playWhenPlayerIsReady.play,
-    state.queue,
-    state.audioPlayer.isReady,
-    state.audioPlayer.episode,
-  ]);
+    }, 100);
+  }, [state.audioPlayer.goToNextEpisode]);
 
   const lastUpdate = podcast ? getLastUpdate(podcast) : undefined;
 

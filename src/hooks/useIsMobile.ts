@@ -5,7 +5,6 @@ export function useIsMobile() {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   function handleWindowSizeChange() {
-    console.log(window.innerWidth);
     setWidth(window.innerWidth);
   }
   useEffect(() => {

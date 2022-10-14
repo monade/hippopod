@@ -31,6 +31,7 @@ export default function MobileQueue({
   }, [state.queue]);
 
   const removeAllTracks = () => {
+    state.audioPlayer.pause();
     dispatch({
       type: Types.DeleteAllEpisodes,
       payload: null,

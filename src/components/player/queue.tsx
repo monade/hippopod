@@ -34,6 +34,7 @@ export default function Queue({
   }, [state.queue]);
 
   const removeAllTracks = () => {
+    state.audioPlayer.pause();
     dispatch({
       type: Types.DeleteAllEpisodes,
       payload: null,

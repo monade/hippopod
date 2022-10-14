@@ -86,7 +86,7 @@ export default function MobileCommands({
 
   useEffect(() => {
     setIsPlaying(!state.audioPlayer.audio.paused);
-  }, [state.audioPlayer.audio.paused]);
+  }, [state.audioPlayer.audio.paused, state.audioPlayer.audio.readyState]);
 
   useEffect(() => {
     if (isMuted) {
