@@ -1,23 +1,19 @@
-.commands-background {
+.mobile-commands-background {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 150px;
 }
 
-.commands {
+.mobile-commands {
   z-index: 200;
-
-  .w-100{
-    width: 100%;
-  }
 
   .commands-container {
     display: flex;
     flex-direction: row;
-    padding: 0 139px;
     height: 100%;
+    padding: 0;
     margin: 0 auto;
   }
 
@@ -59,13 +55,9 @@
     text-overflow: ellipsis;
   }
 
-  .title-section {
-    margin: 0px 24px;
-    min-width: 195px;
-    max-width: 250px;
-  }
-
   .title {
+    padding-top: 10px;
+    max-width: 92vw;
     font-size: 14px;
     font-weight: bold;
     color: var(--text-color);
@@ -80,6 +72,9 @@
   .time-track-section {
     min-width: 300px;
     width: 100%;
+    padding: 10px 0;
+    margin-bottom: 5px;
+    max-width: 98vw;
   }
 
   .time-track-slider {
@@ -115,8 +110,8 @@
   }
 
   .time-track-timer {
-    width: 90px;
-    font-size: 12px;
+    width: 70px;
+    font-size: 10px;
     color: var(--text-color);
     opacity: 0.4;
   }
@@ -138,6 +133,10 @@
   }
   .front-10-button {
     margin-left: 8px;
+  }
+
+  .play-commands-container {
+    width: 92vw;
   }
 
   .play-container {
@@ -221,7 +220,8 @@
     height: 38px;
     border-radius: 50%;
     background: #848484;
-    margin-left: 8px;
+    padding: 0;
+    margin: 0;
 
     * {
       color: white;
@@ -253,7 +253,8 @@
   }
 
   .left-circle-command-button {
-    margin-left: 16px;
+    padding: 0;
+    margin: 0;
   }
 
   .position-relative {

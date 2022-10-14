@@ -2,6 +2,7 @@ import { colord } from "colord";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ReactSlider from "react-slider";
 import ARGUMENTS from "../../data/arguments";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import { EpisodeContextType, playerContext } from "../../store/playerContext";
 import { getDateString, getTimeStringFromSeconds } from "../../utils/dateUtils";
 import CircularProgressBar from "../utils/circularProgressBar";
@@ -67,6 +68,8 @@ export default function Commands({
     width: "16px",
     height: "16px",
   };
+
+  const { width } = useIsMobile();
 
   useEffect(() => {
     if (state.queue.length === 0) {
@@ -217,65 +220,114 @@ export default function Commands({
             />
           </div>
         </div>
-        <div className="flex-column title-section">
-          <p className="text-no-wrap title">{currentEpisode?.title}</p>
-          <p className="text-no-wrap subtitle">
-            {getDateString(currentEpisode?.date)} ·{" "}
-            {getTimeStringFromSeconds(audioPlayer.duration || null)} ·{" "}
-            {currentEpisode?.size} MB
-          </p>
-        </div>
-        <div className="flex-row time-track-section">
-          <p className="text-no-wrap time-track-timer left-timer">
-            {getTimeStringFromSeconds(currentTime)}
-          </p>
+        {width <= 1120 ? (
+          <div className="flex-column w-100 flex-center-center">
+            <div className="flex-column title-section">
+              <p className="text-no-wrap title">{currentEpisode?.title}</p>
+              <p className="text-no-wrap subtitle">
+                {getDateString(currentEpisode?.date)} ·{" "}
+                {getTimeStringFromSeconds(audioPlayer.duration || null)} ·{" "}
+                {currentEpisode?.size} MB
+              </p>
+            </div>
+            <div className="flex-row time-track-section">
+              <p className="text-no-wrap time-track-timer left-timer">
+                {getTimeStringFromSeconds(currentTime)}
+              </p>
 
-          <ReactSlider
-            className="time-track-slider"
-            ref={timeTrackSlider}
-            onChange={(event: any) => {
-              audioPlayer.pause();
-              audioPlayer.audio.currentTime = event;
-              audioPlayer.play();
-            }}
-            min={0}
-            max={audioPlayer.duration}
-            value={currentTime}
-            orientation="horizontal"
-            trackClassName="track"
-            thumbClassName="thumb"
-            thumbActiveClassName="thumb-active"
-          />
-          <p className="text-no-wrap time-track-timer right-timer">
-            {audioPlayer.duration && currentTime ? "-" : ""}
-            {getTimeStringFromSeconds(
-              audioPlayer.duration && currentTime
-                ? audioPlayer.duration - currentTime
-                : null
-            )}
-          </p>
-        </div>
-        <div className="flex-row">
-          <Icon
-            onClick={triggerMuted}
-            className="clickable mute-unmute-icon flex-center-center"
-            iconRelativePath={
-              isMuted || volume === 0 ? "player/volume-mute" : "player/volume"
-            }
-            svgStyles={muteUnmuteSvgStyles}
-          />
-          <ReactSlider
-            className="volume-slider"
-            min={0}
-            max={100}
-            value={isMuted ? 0 : volume}
-            onChange={(event: any) => setVolume(event)}
-            orientation="horizontal"
-            trackClassName="track"
-            thumbClassName="thumb"
-            thumbActiveClassName="thumb-active"
-          />
-        </div>
+              <ReactSlider
+                className="time-track-slider"
+                ref={timeTrackSlider}
+                onChange={(event: any) => {
+                  audioPlayer.pause();
+                  audioPlayer.audio.currentTime = event;
+                  audioPlayer.play();
+                }}
+                min={0}
+                max={audioPlayer.duration}
+                value={currentTime}
+                orientation="horizontal"
+                trackClassName="track"
+                thumbClassName="thumb"
+                thumbActiveClassName="thumb-active"
+              />
+              <p className="text-no-wrap time-track-timer right-timer">
+                {audioPlayer.duration && currentTime ? "-" : ""}
+                {getTimeStringFromSeconds(
+                  audioPlayer.duration && currentTime
+                    ? audioPlayer.duration - currentTime
+                    : null
+                )}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="flex-column title-section">
+              <p className="text-no-wrap title">{currentEpisode?.title}</p>
+              <p className="text-no-wrap subtitle">
+                {getDateString(currentEpisode?.date)} ·{" "}
+                {getTimeStringFromSeconds(audioPlayer.duration || null)} ·{" "}
+                {currentEpisode?.size} MB
+              </p>
+            </div>
+            <div className="flex-row time-track-section">
+              <p className="text-no-wrap time-track-timer left-timer">
+                {getTimeStringFromSeconds(currentTime)}
+              </p>
+
+              <ReactSlider
+                className="time-track-slider"
+                ref={timeTrackSlider}
+                onChange={(event: any) => {
+                  audioPlayer.pause();
+                  audioPlayer.audio.currentTime = event;
+                  audioPlayer.play();
+                }}
+                min={0}
+                max={audioPlayer.duration}
+                value={currentTime}
+                orientation="horizontal"
+                trackClassName="track"
+                thumbClassName="thumb"
+                thumbActiveClassName="thumb-active"
+              />
+              <p className="text-no-wrap time-track-timer right-timer">
+                {audioPlayer.duration && currentTime ? "-" : ""}
+                {getTimeStringFromSeconds(
+                  audioPlayer.duration && currentTime
+                    ? audioPlayer.duration - currentTime
+                    : null
+                )}
+              </p>
+            </div>
+          </>
+        )}
+        {width < 1260 ? (
+          ""
+        ) : (
+          <div className="flex-row">
+            <Icon
+              onClick={triggerMuted}
+              className="clickable mute-unmute-icon flex-center-center"
+              iconRelativePath={
+                isMuted || volume === 0 ? "player/volume-mute" : "player/volume"
+              }
+              svgStyles={muteUnmuteSvgStyles}
+            />
+            <ReactSlider
+              className="volume-slider"
+              min={0}
+              max={100}
+              value={isMuted ? 0 : volume}
+              onChange={(event: any) => setVolume(event)}
+              orientation="horizontal"
+              trackClassName="track"
+              thumbClassName="thumb"
+              thumbActiveClassName="thumb-active"
+            />
+          </div>
+        )}
         <div className="flex-row">
           <div
             className="clickable circle-command-button left-circle-command-button flex-center-center"
@@ -283,18 +335,22 @@ export default function Commands({
           >
             <p>{playbackRate}x</p>
           </div>
-          <div
-            className="clickable circle-command-button flex-center-center"
-            onClick={() => {
-              window.open(currentEpisode?.url || "", "_blank");
-            }}
-          >
-            <Icon
-              className="download-icon flex-center-center"
-              iconRelativePath="player/download"
-              svgStyles={muteUnmuteSvgStyles}
-            />
-          </div>
+          {width < 1160 ? (
+            ""
+          ) : (
+            <div
+              className="clickable circle-command-button flex-center-center"
+              onClick={() => {
+                window.open(currentEpisode?.url || "", "_blank");
+              }}
+            >
+              <Icon
+                className="download-icon flex-center-center"
+                iconRelativePath="player/download"
+                svgStyles={muteUnmuteSvgStyles}
+              />
+            </div>
+          )}
 
           <div
             className="clickable circle-command-button flex-center-center position-relative"
