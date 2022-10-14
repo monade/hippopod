@@ -10,3 +10,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Added
 - Cubango theme
 - Hippopod CLI
+
+## Fixed 
+- Fixed ci
