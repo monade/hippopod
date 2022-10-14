@@ -1,8 +1,8 @@
 name: deploy
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -13,44 +13,43 @@ jobs:
     env:
       NODE_ENV: production
     steps:
-        - uses: actions/checkout@v3
-
-        - name: build
-          run: |
-            sudo apt-get update
-            sudo apt-get install zip
-            cp ./src/data/arguments.production.ts ./src/data/arguments.ts
-            for THEME in "cubango" "zambezi" "bani"
-            do
-              sed -i -e "s/ARGUMENTS.theme/'$THEME'/g" ./src/index.tsx
-              rm -rf ./build
-              yarn install
-              yarn build
-              zip -r $THEME.zip build
-              echo "zip $THEME.zip"
-              sed -i -e "s/'$THEME'/ARGUMENTS.theme/g" ./src/index.tsx
-            done
-
-        - name: deploy cubango
-          uses: prewk/s3-cp-action@v2
+      - uses: actions/checkout@v3
+      - name: build
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          cp ./src/data/arguments.production.ts ./src/data/arguments.ts
+          for THEME in "cubango" "zambezi" "bani"
+          do
+            sed -i -e "s/ARGUMENTS.theme/'$THEME'/g" ./src/index.tsx
+            rm -rf ./build
+            yarn install
+            yarn build
+            zip -r $THEME.zip build
+            echo "zip $THEME.zip"
+            sed -i -e "s/'$THEME'/ARGUMENTS.theme/g" ./src/index.tsx
+          done
+      - name: deploy cubango
+        uses: prewk/s3-cp-action@v2
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          source: './cubango.zip'
+          dest: ${{ secrets.BUCKET_URL }}
+      - name: deploy zambezi
+        uses: prewk/s3-cp-action@v2
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          source: './zambezi.zip'
+          dest: ${{ secrets.BUCKET_URL }}
+      - name: deploy bani
+        uses: prewk/s3-cp-action@v2
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          source: './bani.zip'
+          dest: ${{ secrets.BUCKET_URL }}
+      - uses: JS-DevTools/npm-publish@v1
           with:
-            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            source: './cubango.zip'
-            dest: ${{ secrets.BUCKET_URL }}
-
-        - name: deploy zambezi
-          uses: prewk/s3-cp-action@v2
-          with:
-            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            source: './zambezi.zip'
-            dest: ${{ secrets.BUCKET_URL }}
-
-        - name: deploy bani
-          uses: prewk/s3-cp-action@v2
-          with:
-            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            source: './bani.zip'
-            dest: ${{ secrets.BUCKET_URL }}
+            token: ${{ secrets.NPM_TOKEN }}

@@ -54,7 +54,7 @@ const folderName = await ask('Choose folder name');
 saveFolder();
 
 async function welcome()  {
-  const message = 'WELCOME   TO   HIPPOPOD   CLI';
+  const message = 'HIPPOPOD   CLI';
 
   figlet(message, { horizontalLayout: 'fitted' }, (err, data) => {
     console.log(gradient.pastel(data));
