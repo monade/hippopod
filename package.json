@@ -1,39 +1,57 @@
 {
   "name": "hippopod",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.16",
+  "private": false,
   "engines": {
     "node": "^16"
   },
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/dompurify": "^2",
     "@types/jest": "^27.5.1",
     "@types/node": "^16.11.34",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
-    "@types/dompurify": "^2",
+    "axios": "^0.27.2",
+    "camelcase": "^7.0.0",
+    "chalk": "^5.0.1",
+    "cli-spinners": "^2.7.0",
     "colord": "^2.9.2",
+    "dompurify": "^2.4.0",
+    "download": "^8.0.0",
     "fast-xml-parser": "^4.0.7",
+    "figlet": "^1.5.2",
+    "get-image-colors": "^4.0.1",
+    "glob": "^8.0.3",
+    "gradient-string": "^2.0.1",
+    "html-escaper": "^3.0.3",
+    "inquirer": "^9.1.0",
+    "is-hexadecimal": "^2.0.1",
     "moment": "^2.29.3",
+    "ora": "^6.1.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-inlinesvg": "^3.0.0",
     "react-modal": "^3.15.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-slider": "^2.0.1",
+    "shelljs": "^0.8.5",
+    "strip-ansi": "^7.0.1",
     "svg-inline-loader": "^0.8.2",
     "typescript": "^4.6.4",
-    "web-vitals": "^2.1.4",
-    "dompurify": "^2.4.0"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "generate": "node scripts/start.js 2EB170 zambezi light",
     "start": "react-scripts start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "bin": {
+    "generate": "./bin/index.js"
   },
   "eslintConfig": {
     "extends": [
