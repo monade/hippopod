@@ -98,13 +98,34 @@ const EpisodeInfoModal: React.FC<Props> = ({
                 Published on {renderDate(episode.publicationDate)}
               </span>
               <div className="controls">
-                <div className="icon contrast" onClick={() => onPlayEpisode()}>
+                <div
+                  className="icon contrast"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onPlayEpisode();
+                  }}
+                >
                   <PlayIcon />
                 </div>
-                <div className="icon" onClick={() => download()}>
+                <div
+                  className="icon"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    download();
+                  }}
+                >
                   <DownloadIcon style={{ transform: "rotate(90deg)" }} />
                 </div>
-                <div className="icon" onClick={() => onQueueEpisode()}>
+                <div
+                  className="icon"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onQueueEpisode();
+                  }}
+                >
                   <PlaylistIcon />
                 </div>
               </div>

@@ -60,7 +60,7 @@ const EpisodesListItem: React.FC<Props> = ({
   };
 
   return (
-    <div className="episodes-list-item" onClick={openModal}>
+    <div className="episodes-list-item">
       <EpisodeControls
         fill={"height"}
         imageUrl={imageUrl}
@@ -68,7 +68,7 @@ const EpisodesListItem: React.FC<Props> = ({
         onPlayEpisode={() => onPlayEpisode(episode)}
         onQueueEpisode={() => onQueueEpisode(episode)}
       />
-      <div className="episodes-list-item__content">
+      <div onClick={openModal} className="episodes-list-item__content">
         <h6>{episode.title}</h6>
         {episode.description && (
           <p
