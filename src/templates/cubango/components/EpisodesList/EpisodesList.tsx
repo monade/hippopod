@@ -8,7 +8,6 @@ interface Props {
   episodes: Episode[];
   onPlayEpisode: (episode: Episode) => void;
   onQueueEpisode: (episode: Episode) => void;
-  filter?: string;
 }
 
 const EpisodesList: React.FC<Props> = ({
@@ -16,28 +15,18 @@ const EpisodesList: React.FC<Props> = ({
   episodes,
   onPlayEpisode,
   onQueueEpisode,
-  filter,
 }) => {
-  const [shownEpisodes, setShownEpisodes] = useState<Episode[]>([]);
-
-  useEffect(() => {
-    setShownEpisodes(sliceEpisodes(6));
-  }, []);
-
-  useEffect(() => {
-    setShownEpisodes(
-      episodes.filter(
-        (episode) =>
-          episode.title?.toLowerCase()?.includes(filter?.toLowerCase() ?? "") ||
-          episode.description
-            ?.toLowerCase()
-            ?.includes(filter?.toLowerCase() ?? "")
-      )
-    );
-  }, [filter]);
-
   const sliceEpisodes = (episodesAmount: number) =>
     episodes.slice(0, Math.min(episodesAmount, episodes.length));
+
+  const [shownEpisodes, setShownEpisodes] = useState<Episode[]>(
+    sliceEpisodes(12)
+  );
+
+  useEffect(() => {
+    setShownEpisodes(sliceEpisodes(12));
+  }, [episodes]);
+
   const showMore = () =>
     setShownEpisodes(sliceEpisodes(shownEpisodes.length + 6));
 
