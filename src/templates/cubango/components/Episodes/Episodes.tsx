@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EpisodesLayout } from "../../../../models/episodes-layout";
 import EpisodesLayoutSelector from "../EpisodesLayoutSelector/EpisodesLayoutSelector";
 import "./Episodes.scss";
@@ -23,32 +23,26 @@ const Episodes: React.FC<Props> = ({
   onQueueEpisode,
 }) => {
   const [filter, setFilter] = useState<string>("");
+  const [filteredEpisodes, setFilteredEpisodes] = useState<Episode[]>(
+    podcast.episodes
+  );
 
-  const renderEpisodes = (episodes: Episode[]) => {
-    switch (layout) {
-      case "grid":
-        return (
-          <EpisodesGrid
-            podcastImageUrl={podcast.imageUrl}
-            episodes={episodes}
-            onPlayEpisode={onPlayEpisode}
-            onQueueEpisode={onQueueEpisode}
-            filter={filter}
-          />
-        );
-      case "list":
-      default:
-        return (
-          <EpisodesList
-            podcastImageUrl={podcast.imageUrl}
-            episodes={episodes}
-            onPlayEpisode={onPlayEpisode}
-            onQueueEpisode={onQueueEpisode}
-            filter={filter}
-          />
-        );
+  useEffect(() => {
+    if (!filter || filter === "") {
+      setFilteredEpisodes(podcast.episodes);
+      return;
     }
-  };
+
+    setFilteredEpisodes(
+      podcast.episodes.filter(
+        (episode) =>
+          episode.title?.toLowerCase()?.includes(filter?.toLowerCase() ?? "") ||
+          episode.description
+            ?.toLowerCase()
+            ?.includes(filter?.toLowerCase() ?? "")
+      )
+    );
+  }, [filter]);
 
   return (
     <div className="episodes">
@@ -65,7 +59,21 @@ const Episodes: React.FC<Props> = ({
         />
       </div>
       <div className="episodes__content">
-        {renderEpisodes(podcast.episodes)}
+        {layout === "grid" ? (
+          <EpisodesGrid
+            podcastImageUrl={podcast.imageUrl}
+            episodes={filteredEpisodes}
+            onPlayEpisode={onPlayEpisode}
+            onQueueEpisode={onQueueEpisode}
+          />
+        ) : (
+          <EpisodesList
+            podcastImageUrl={podcast.imageUrl}
+            episodes={filteredEpisodes}
+            onPlayEpisode={onPlayEpisode}
+            onQueueEpisode={onQueueEpisode}
+          />
+        )}
       </div>
     </div>
   );
