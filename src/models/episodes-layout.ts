@@ -1,1 +1,1 @@
-export type EpisodesLayout = 'list' | 'grid';
+export type EpisodesLayout = "list" | "grid";

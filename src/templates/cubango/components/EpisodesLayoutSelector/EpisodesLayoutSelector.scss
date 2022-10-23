@@ -1,6 +1,9 @@
 .episodes-layout-selector {
   display: flex;
   align-items: center;
+  border-radius: 19px;
+  overflow: hidden;
+  position: relative;
 
   &__icon {
     height: 13px;
@@ -11,14 +14,20 @@
   &__icon.active {
     fill: var(--primary-color);
   }
-}
 
-.episodes-layout-selector > *:first-child {
-  border-bottom-left-radius: 19px;
-  border-top-left-radius: 19px;
-}
+  &--light {
+    border: 1px solid #cecece;
 
-.episodes-layout-selector > *:last-child {
-  border-bottom-right-radius: 19px;
-  border-top-right-radius: 19px;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: #cecece;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+  }
 }
