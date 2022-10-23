@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .episodes-list-item {
   height: 168px;
@@ -35,7 +35,6 @@
     --episode-list-item-font-size: 14px;
   }
   .episodes-list-item {
-
     &__content {
       margin-left: 40px;
 

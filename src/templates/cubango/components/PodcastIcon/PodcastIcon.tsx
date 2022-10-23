@@ -1,5 +1,5 @@
-import React, {useMemo} from "react";
-import './PodcastIcon.scss';
+import React, { useMemo } from "react";
+import "./PodcastIcon.scss";
 
 interface Props {
   url?: string;
@@ -10,24 +10,40 @@ interface Props {
   themeMode?: string;
 }
 
-const PodcastIcon: React.FC<Props> = ({ url, iconUrl, alt, width, height, themeMode }) => {
-
+const PodcastIcon: React.FC<Props> = ({
+  url,
+  iconUrl,
+  alt,
+  width,
+  height,
+  themeMode,
+}) => {
   const filter = useMemo(() => {
-    if(!themeMode) {
+    if (!themeMode) {
       return "brightness(1)";
     }
 
-    if (themeMode === 'light') {
-      return 'brightness(0)';
+    if (themeMode === "light") {
+      return "brightness(0)";
     }
-    return 'brightness(1)';
+    return "brightness(1)";
   }, []);
 
   return url ? (
-    <a className="podcast-links-icon" href={url} style={{ filter: '' }}>
-      <img src={iconUrl} alt={alt} style={{ width: width || 'auto', height: height || 'auto', filter: filter }} />
+    <a className="podcast-links-icon" href={url} style={{ filter: "" }}>
+      <img
+        src={iconUrl}
+        alt={alt}
+        style={{
+          width: width || "auto",
+          height: height || "auto",
+          filter: filter,
+        }}
+      />
     </a>
-  ) : <></>;
-}
+  ) : (
+    <></>
+  );
+};
 
 export default PodcastIcon;

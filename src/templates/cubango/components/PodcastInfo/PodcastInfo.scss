@@ -1,4 +1,4 @@
-@import '../../variables';
+@import "../../variables";
 
 .podcast-info {
   position: relative;
@@ -19,7 +19,7 @@
   }
 
   &__badge {
-    border: 2px solid #FFFFFF;
+    border: 2px solid #ffffff;
     border-radius: 24px;
     letter-spacing: 0.53px;
     text-transform: uppercase;
@@ -64,7 +64,6 @@
       outline: inherit;
     }
   }
-
 }
 
 @media screen and (min-width: $sm-width) {
@@ -90,7 +89,10 @@
     }
 
     &__content-inner {
-      max-width: min(40vw, calc(100vw - 2 * #{$horizontal-padding} - #{$podcast-image-size} - 10px));
+      max-width: min(
+        40vw,
+        calc(100vw - 2 * #{$horizontal-padding} - #{$podcast-image-size} - 10px)
+      );
     }
   }
 }
@@ -109,7 +111,6 @@
 
 @media screen and (max-width: $sm-width - 1) {
   .podcast-info {
-
     &__header {
       padding: 20px $horizontal-padding-sm;
 

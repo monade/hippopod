@@ -12,15 +12,12 @@
   font-size: 14px;
   letter-spacing: 0.42px;
 
-  &__backdrop {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: var(--bg-color);
-    opacity: 0.92;
-    z-index: 1 !important;
+  &--dark {
+    background: var(--dark-mode-bg-color-light);
+  }
+
+  &--light {
+    background: white;
   }
 
   span {

@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");
 
 html {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
   display: grid;
   grid-template-rows: 35vh;
-  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 18rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 18rem) [col-end]
+    )
+    [center-end] minmax(6rem, 1fr) [full-end];
 }
 
 .main {
@@ -73,13 +78,14 @@ a {
 }
 
 :root {
-  --dark-mode-bg-color: #1A2028;
+  --dark-mode-bg-color: #1a2028;
+  --dark-mode-bg-color-light: #252c37;
   --dark-mode-text-color: #ffffff;
-  
-  --light-mode-bg-color: #ffffff;
-  --light-mode-text-color: #1A2028;
 
-  --primary-color: #2EB170;
+  --light-mode-bg-color: #ffffff;
+  --light-mode-text-color: #1a2028;
+
+  --primary-color: #2eb170;
   --bg-color: $dark-mode-bg-color;
   --text-color: $dark-mode-text-color;
 }

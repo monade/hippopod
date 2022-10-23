@@ -37,7 +37,7 @@ const EpisodeInfo: React.FC<Props> = ({ episode, onClick }) => {
       {renderDate(episode.publicationDate)}
       {renderDuration(episode.durationSeconds)}
       {renderSize(episode.sizeBytes)}
-      <strong style={{cursor:'pointer'}}>More Details</strong>
+      <strong style={{ cursor: "pointer" }}>More Details</strong>
     </span>
   );
 };

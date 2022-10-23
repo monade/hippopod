@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { EpisodesLayout } from "../../../../models/episodes-layout";
 import EpisodesLayoutSelector from "../EpisodesLayoutSelector/EpisodesLayoutSelector";
 import "./Episodes.scss";
@@ -6,6 +6,8 @@ import EpisodesList from "../EpisodesList/EpisodesList";
 import EpisodesGrid from "../EpisodesGrid/EpisodesGrid";
 import { Podcast } from "../../../../models/podcast";
 import { Episode } from "../../../../models/episode";
+import { colord } from "colord";
+import ARGUMENTS from "../../../../data/arguments";
 
 interface Props {
   podcast: Podcast;
@@ -44,6 +46,10 @@ const Episodes: React.FC<Props> = ({
     );
   }, [filter]);
 
+  const background = useMemo(() => {
+    return `episodes__filter--${ARGUMENTS.themeMode}`;
+  }, []);
+
   return (
     <div className="episodes">
       <div className="episodes__layout-selector-outer">
@@ -51,6 +57,7 @@ const Episodes: React.FC<Props> = ({
           name="filter"
           type="text"
           placeholder="Search episodes..."
+          className={`episodes__filter ${background}`}
           onChange={(e) => setFilter(e.target.value)}
         />
         <EpisodesLayoutSelector

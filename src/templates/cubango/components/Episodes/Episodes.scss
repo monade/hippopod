@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .episodes {
   background-color: var(--bg-color);
@@ -11,6 +11,24 @@
 
   &__content {
     padding: 35px 0 60px;
+  }
+
+  &__filter {
+    padding: 10px 16px;
+    outline: none;
+    color: var(--primary-color);
+    border-radius: 19px;
+    border: none;
+    align-self: stretch;
+    margin-right: 1rem;
+
+    &--dark {
+      background-color: var(--dark-mode-bg-color-light);
+    }
+
+    &--light {
+      border: 1px solid #cecece;
+    }
   }
 }
 

@@ -1,7 +1,6 @@
 @import "../../templates/cubango/variables";
 
 .ReactModal__Content {
-
   .ms-2 {
     margin-left: 10px;
   }
@@ -44,7 +43,6 @@
           letter-spacing: 0px;
 
           margin-bottom: 10px;
-
         }
 
         .controls {
@@ -66,7 +64,7 @@
             background-color: white;
 
             * {
-              fill: #1A2028;
+              fill: #1a2028;
             }
           }
 
@@ -81,12 +79,10 @@
 
 @media screen and (min-width: $xs-width) {
   .episodes-info-modal {
-
   }
 }
 
 @media screen and (max-width: $xs-width - 1) {
   .episodes-info-modal {
-
   }
 }

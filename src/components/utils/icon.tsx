@@ -16,7 +16,7 @@ export default function Icon({
   svgStyles,
   spanContainerStyles,
   className,
-  onClick
+  onClick,
 }: IconPropsInterface) {
   const spanRef = useRef<HTMLSpanElement | null>(null);
   const [svg, setSvg] = useState<string | null>(null);
