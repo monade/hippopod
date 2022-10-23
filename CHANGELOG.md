@@ -8,8 +8,22 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 # [1.0.0] - 2022-10-14
 
 ## Added
+
 - Cubango theme
 - Hippopod CLI
 
-## Fixed 
+## Fixed
+
 - Fixed ci
+
+# [1.0.3]
+
+## Added
+
+- husky
+- prettier
+- pretty-quick
+
+## Fixed
+
+- search episodes graphic
